@@ -1,256 +1,502 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>KetSiho Shipping</title>
-  <style>
-    :root {
-      --orange: #FF8500;
-      --orange-dark: #E26F00;
-      --gray: #f7f7fb;
-      --text: #2d2e32;
-      --secondary: #fff;
-    }
-    body {
-      margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: var(--gray); color: var(--text);
-    }
-    header {
-      background: var(--secondary);
-      box-shadow: 0 2px 16px #0001;
-      position: sticky; top: 0; z-index: 100;
-      border-radius: 0 0 18px 18px;
-    }
-    .container { max-width: 1040px; margin: auto; padding: 0 18px;}
-    .navbar {
-      display:flex; align-items:center; justify-content:space-between; padding:14px 0;
-    }
-    .logo {
-      color: var(--orange); font-weight: bold; font-size: 1.6rem; letter-spacing: 1.5px;
-    }
-    .nav-btns {display: flex; gap: 10px;}
-    .nav-btn {
-      background: none; color: var(--orange); border:none; border-radius: 30px;
-      padding: 8px 20px; font-size: 1rem; font-weight: 500; cursor:pointer;
-      transition: background 0.14s, color 0.14s;
-    }
-    .nav-btn:hover, .nav-btn.active {background: var(--orange); color: #fff;}
-    /* HERO */
-    .hero {
-      text-align: center; padding: 82px 10px 54px 10px;
-      background: linear-gradient(125deg,#ffe2c1 50%, #fff 100%);
-      border-radius: 0 0 32px 32px;
-      margin-bottom: 42px;
-    }
-    .hero h1 {
-      font-size: 2.4rem; margin-bottom: 18px; color: var(--orange);
-      font-weight: bold;
-    }
-    .hero p {color: #333; font-size: 1.13rem; margin-bottom: 25px;}
-    .cta-btn {
-      background: var(--orange); color: #fff; padding: 13px 36px; border-radius: 28px;
-      font-size: 1.1rem; border: none; cursor: pointer; box-shadow: 0 2px 12px #ff850022;
-      transition: background 0.15s,transform 0.15s;
-      margin-top: 8px; font-weight: 500;
-    }
-    .cta-btn:hover {background: var(--orange-dark);}
-    /* SERVICES */
-    .services-section {margin: 58px 0;}
-    .services-title {text-align: center; color: var(--orange); font-size: 1.5rem; margin-bottom: 32px;}
-    .services {
-      display: grid; grid-template-columns: repeat(auto-fit,minmax(230px,1fr)); gap: 30px;
-    }
-    .service {
-      background: #fff; border-radius: 20px; box-shadow: 0 4px 28px #ff850018;
-      padding: 32px 18px; text-align: center; transition: transform 0.2s, box-shadow 0.2s;
-      border-bottom: 3px solid var(--orange);
-      display: flex; flex-direction: column; align-items: center; min-height: 180px;
-    }
-    .service-icon {
-      font-size: 2rem; background: var(--orange); color: #fff;
-      border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
-      margin-bottom: 16px;
-    }
-    .service-title {color: var(--orange); font-weight: bold; margin-bottom: 5px; font-size: 1.08rem;}
-    .service-desc {font-size: 1rem; color: #444;}
-    /* GALLERY */
-    .gallery-section {background: #fffbe9; padding: 44px 0;}
-    .gallery-title {text-align: center; color: var(--orange); font-size: 1.4rem; margin-bottom: 20px;}
-    .gallery-scroll {
-      display: flex; gap: 22px; overflow-x: auto; padding: 10px 0 15px 12px; scrollbar-width: thin; scrollbar-color: var(--orange) #ffd9b3;
-      margin-bottom: 8px;
-    }
-    .gallery-img-card {
-      min-width: 270px; max-width: 300px; border-radius: 20px; overflow: hidden; box-shadow: 0 2px 16px #ff850011;
-      background: #fff; position: relative; transition: transform 0.2s, box-shadow 0.2s;
-      flex-shrink: 0;
-    }
-    .gallery-img-card:hover {transform: scale(1.04) rotate(-1deg); box-shadow: 0 6px 30px #ff850025;}
-    .gallery-img-card img {width: 100%; height: 160px; object-fit: cover;}
-    .gallery-img-card .label {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      background: linear-gradient(0deg,#ff850099 70%,transparent 100%);
-      color: #fff; padding: 9px 14px; font-weight: 500;
-      font-size: 1rem;
-    }
-    /* FAQ */
-    .faq-section {max-width: 600px; margin: 40px auto;}
-    .faq-title {text-align: center; color: var(--orange); font-size: 1.2rem; margin-bottom: 14px;}
-    details {background: #fff; border-radius: 14px; box-shadow: 0 2px 10px #ff850011; margin: 10px 0; padding: 13px 14px;}
-    summary {cursor: pointer; color: var(--orange);font-weight: 500; font-size: 1.03rem;}
-    /* CONTACT */
-    .contact-section {background: linear-gradient(125deg,#ffe2c1 50%, #fff 100%); padding: 46px 0;}
-    .contact-title {text-align: center; color: var(--orange); font-size: 1.35rem; margin-bottom: 13px;}
-    .contact-form {max-width: 340px; margin: auto; background: #fff; border-radius: 16px; box-shadow: 0 4px 22px #ff850022; padding: 26px 18px; display: flex; flex-direction: column; gap: 13px;}
-    .contact-form input,.contact-form textarea {font-size: 1rem; padding: 9px; border:1px solid #ffd9b3; border-radius: 7px;}
-    .contact-form button {background: var(--orange); color: #fff; border: none; border-radius: 18px; padding: 10px; font-size: 1rem; cursor:pointer;}
-    .contact-form button:hover {background: var(--orange-dark);}
-    /* Footer */
-    footer {background: #fff; color: #888; text-align: center; font-size: 1rem; padding: 18px 0 8px 0; margin-top: 38px;}
-    /* Responsive */
-    @media (max-width:700px){
-      .gallery-img-card{min-width: 78vw;}
-      .services{grid-template-columns: 1fr;}
-      .hero h1{font-size: 1.2rem;}
-      .navbar {flex-direction:column;gap:7px;}
-      .nav-btn {font-size: 0.97rem; padding: 8px 14px;}
-    }
-  </style>
-</head>
-<body>
-  <!-- NAVBAR -->
-  <header>
-    <div class="container navbar">
-      <div class="logo">KetSiho Shipping</div>
-      <div class="nav-btns">
-        <a href="#hero" class="nav-btn active">Accueil</a>
-        <a href="#services" class="nav-btn">Services</a>
-        <a href="#gallery" class="nav-btn">Galerie</a>
-        <a href="#faq" class="nav-btn">FAQ</a>
-        <a href="#contact" class="nav-btn">Contact</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KetSiho Shipping - Vitrine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" 
+    />
+    <style>
+      :root {
+        --orange: #f97316;
+        --orange-light: #fcd9b1;
+        --bg: #fffaf3;
+        --contact-bg: rgba(255, 255, 255, 0.8);
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--bg);
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+      header {
+        background-color: white;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        padding: 1rem 2rem;
+      }
+      nav {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .nav-item {
+        background-color: var(--bg);
+        border: 2px solid var(--orange);
+        border-radius: 50px;
+        padding: 0.5rem 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: var(--orange);
+        font-weight: bold;
+      }
+      .nav-item:hover,
+      .nav-item:focus {
+        background-color: var(--orange-light);
+      }
+      @media (max-width: 767px) {
+        .nav-item {
+          border-radius: 50%;
+          padding: 0.5rem;
+          justify-content: center;
+          width: 48px;
+          height: 48px;
+          gap: 0;
+        }
+        .nav-text {
+          display: none;
+        }
+      }
+      @media (min-width: 768px) {
+        .nav-text {
+          display: inline;
+        }
+      }
+      .carousel-wrapper {
+        max-width: 1000px;
+        margin: 2rem auto 0;
+        overflow: hidden;
+        border-radius: 1rem;
+        background: white;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        position: relative;
+      }
+      .carousel-track {
+        display: flex;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+      }
+      .carousel-track::-webkit-scrollbar {
+        display: none;
+      }
+      .carousel-slide {
+        flex: 0 0 auto;
+        width: 85vw;
+        max-width: 1000px;
+        aspect-ratio: 16 / 9;
+        margin: 1rem 0.5rem;
+        border-radius: 1rem;
+        background-size: cover;
+        background-position: center;
+        scroll-snap-align: start;
+        position: relative;
+        transition: transform 0.3s;
+      }
+      .carousel-slide::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0,0,0,0.2), transparent);
+      }
+      .carousel-slide.active {
+        animation: bounce 0.4s ease;
+      }
+      @keyframes bounce {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.03); }
+        100% { transform: scale(1); }
+      }
+      .carousel-fade-right {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 60px;
+        background: linear-gradient(to left, var(--bg), transparent);
+        z-index: 5;
+        pointer-events: none;
+      }
+      .carousel-dots {
+        display: none;
+      }
+      @media (min-width: 768px) {
+        .carousel-dots {
+          display: flex;
+          justify-content: center;
+          gap: 0.5rem;
+          margin-top: 1rem;
+          margin-bottom: 2rem;
+        }
+        .dot {
+          width: 12px;
+          height: 12px;
+          border-radius: 9999px;
+          background-color: var(--orange-light);
+          transition: background-color 0.3s;
+          cursor: pointer;
+        }
+        .dot.active {
+          background-color: var(--orange);
+        }
+      }
+      .fade-in {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.6s ease-in-out;
+      }
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* Box structure for "Services & FAQ" */
+      .info-box {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 1.5rem;
+        background-color: #ffffff;
+        border: 2px solid var(--orange);
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      }
+      .info-box h3 {
+        margin-top: 0;
+        color: var(--orange);
+      }
+      .services-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+      @media (max-width: 600px) {
+        .services-list {
+          grid-template-columns: 1fr;
+        }
+      }
+      .service-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1rem 0.5rem;
+        border-radius: 8px;
+        transition: background 0.25s, transform 0.25s;
+        cursor: default;
+        background: #fff;
+      }
+      .service-item:hover {
+        background: var(--orange-light);
+        transform: translateY(-4px) scale(1.03);
+      }
+      .service-icon {
+        font-size: 2rem;
+        color: var(--orange);
+        flex-shrink: 0;
+        margin-top: 4px;
+      }
+      .faq-list {
+        margin-top: 1.5rem;
+      }
+      .faq-item {
+        margin-bottom: 1rem;
+        background: #fff8ee;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid var(--orange-light);
+        transition: box-shadow 0.2s;
+      }
+      .faq-item[open] {
+        box-shadow: 0 2px 12px #f9731622;
+      }
+      .faq-question {
+        cursor: pointer;
+        padding: 0.8rem 1rem;
+        color: var(--orange);
+        font-weight: 500;
+        font-size: 1.05rem;
+        background: none;
+        border: none;
+        outline: none;
+      }
+      .faq-answer {
+        padding: 0 1rem 1rem 1rem;
+        color: #444;
+        font-size: 0.98rem;
+      }
+      #contact {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 1.5rem;
+        background-color: var(--contact-bg);
+        border: 2px solid var(--orange);
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        backdrop-filter: blur(4px);
+      }
+      #contact h3 {
+        margin-top: 0;
+        color: var(--orange);
+      }
+      .contact-buttons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      .contact-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        border: 2px solid var(--orange);
+        border-radius: 10px;
+        background-color: var(--contact-bg);
+        color: var(--orange);
+        text-decoration: none;
+        font-weight: bold;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+      }
+      .contact-btn i {
+        margin-right: 0.5rem;
+      }
+      .contact-btn:hover {
+        background-color: var(--orange-light);
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+  <body class="text-gray-800">
+    <header role="banner">
+      <nav aria-label="Navigation principale">
+        <a href="#" class="text-lg" style="color: var(--orange); font-weight: bold;">KetSiho</a>
+        <div class="flex gap-3">
+          <a href="#choisir" class="nav-item">
+            <i class="fas fa-star"></i>
+            <span class="nav-text">Pourquoi nous choisir</span>
+          </a>
+          <a href="#fonctionnement" class="nav-item">
+            <i class="fas fa-cogs"></i>
+            <span class="nav-text">Fonctionnement</span>
+          </a>
+          <a href="#contact" class="nav-item">
+            <i class="fas fa-envelope"></i>
+            <span class="nav-text">Contact</span>
+          </a>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <!-- Section: Carrousel -->
+      <section class="carousel-wrapper" aria-label="Carrousel d'images">
+        <div class="carousel-track" id="carousel-track">
+          <div class="carousel-slide" style="background-image: url('https://placehold.co/800x400/f97316/fff?text=1');" role="img" aria-label="Image 1"></div>
+          <div class="carousel-slide" style="background-image: url('https://placehold.co/800x400/ea580c/fff?text=2');" role="img" aria-label="Image 2"></div>
+          <div class="carousel-slide" style="background-image: url('https://placehold.co/800x400/f59e0b/fff?text=3');" role="img" aria-label="Image 3"></div>
+        </div>
+        <div class="carousel-fade-right" aria-hidden="true"></div>
+      </section>
+      <div class="carousel-dots" id="carousel-dots">
+        <span class="dot active" data-index="0" aria-label="Aller à l'image 1"></span>
+        <span class="dot" data-index="1" aria-label="Aller à l'image 2"></span>
+        <span class="dot" data-index="2" aria-label="Aller à l'image 3"></span>
       </div>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero" id="hero">
-    <h1>Simplifiez vos importations de la Chine vers la Côte d’Ivoire</h1>
-    <p>Service rapide, sécurisé et accessible pour commerçants, entreprises et particuliers.</p>
-    <a href="#contact"><button class="cta-btn">Contactez-nous</button></a>
-  </section>
-
-  <!-- SERVICES -->
-  <section class="services-section" id="services">
-    <div class="services-title">Nos points forts</div>
-    <div class="container services">
-      <div class="service">
-        <div class="service-icon">📦</div>
-        <div class="service-title">Réception</div>
-        <div class="service-desc">Vos commandes reçues dans nos entrepôts partenaires en Chine.</div>
-      </div>
-      <div class="service">
-        <div class="service-icon">🤝</div>
-        <div class="service-title">Groupage</div>
-        <div class="service-desc">Réduction des coûts grâce au groupage de colis.</div>
-      </div>
-      <div class="service">
-        <div class="service-icon">🚚</div>
-        <div class="service-title">Expédition</div>
-        <div class="service-desc">Envoi sécurisé par avion ou bateau, suivi en temps réel.</div>
-      </div>
-      <div class="service">
-        <div class="service-icon">🏠</div>
-        <div class="service-title">Livraison</div>
-        <div class="service-desc">Livraison à Abidjan ou dans votre ville, à domicile ou en point relais.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- GALERIE -->
-  <section class="gallery-section" id="gallery">
-    <div class="gallery-title">Un aperçu en images</div>
-    <div class="gallery-scroll">
-      <div class="gallery-img-card">
-        <img src="images/image1.jpg" alt="Réception en Chine"/>
-        <div class="label">Réception en Chine</div>
-      </div>
-      <div class="gallery-img-card">
-        <img src="images/image2.jpg" alt="Groupage"/>
-        <div class="label">Groupage</div>
-      </div>
-      <div class="gallery-img-card">
-        <img src="images/image3.jpg" alt="Expédition"/>
-        <div class="label">Expédition</div>
-      </div>
-      <div class="gallery-img-card">
-        <img src="images/image4.jpg" alt="Livraison"/>
-        <div class="label">Livraison</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="faq-section" id="faq">
-    <div class="faq-title">Questions fréquentes</div>
-    <details open>
-      <summary>Comment envoyer mes colis ?</summary>
-      <div>Indiquez à votre fournisseur l’adresse de notre entrepôt en Chine. Nous prenons le relais dès la réception.</div>
-    </details>
-    <details>
-      <summary>Combien coûte le service ?</summary>
-      <div>Le tarif dépend du poids, du volume et du mode d’expédition. Demandez votre devis personnalisé.</div>
-    </details>
-    <details>
-      <summary>Quels sont les délais de livraison ?</summary>
-      <div>Par avion : 10 à 15 jours ouvrés. Par bateau : 30 à 40 jours selon la période.</div>
-    </details>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="contact-section" id="contact">
-    <div class="contact-title">Contactez-nous</div>
-    <form class="contact-form" onsubmit="event.preventDefault();alert('Message envoyé ! (À relier à un backend ou email)');">
-      <input type="text" placeholder="Nom" required>
-      <input type="email" placeholder="Email" required>
-      <input type="text" placeholder="Sujet" required>
-      <textarea placeholder="Votre message" required></textarea>
-      <button type="submit">Envoyer</button>
-    </form>
-  </section>
-
-  <footer>
-    © <span id="year"></span> KetSiho Shipping. Tous droits réservés.
-  </footer>
-
-  <script>
-    // Footer année dynamique
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Animation slider galerie : scroll auto au swipe (mobile) ou molette (desktop)
-    const gallery = document.querySelector('.gallery-scroll');
-    gallery.addEventListener('wheel', e => {
-      e.preventDefault();
-      gallery.scrollLeft += e.deltaY;
-    });
-    // Optionnel : swipe tactile (mobile)
-    let startX = 0, scrollLeft = 0;
-    gallery.addEventListener('touchstart', e => {
-      startX = e.touches[0].pageX - gallery.offsetLeft;
-      scrollLeft = gallery.scrollLeft;
-    });
-    gallery.addEventListener('touchmove', e => {
-      if (!startX) return;
-      const x = e.touches[0].pageX - gallery.offsetLeft;
-      gallery.scrollLeft = scrollLeft - (x - startX);
-    });
-    // Navbar bouton actif
-    const navLinks = document.querySelectorAll('.nav-btn');
-    navLinks.forEach(link => {
-      link.addEventListener('click', function() {
-        navLinks.forEach(l => l.classList.remove('active'));
-        this.classList.add('active');
+      <!-- Section: Pourquoi nous choisir -->
+      <section id="choisir" class="max-w-6xl mx-auto px-4 py-16 fade-in">
+        <h2 class="text-3xl font-bold text-center text-orange-600 mb-10">Pourquoi nous choisir ?</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <article class="flex items-center gap-4">
+            <i class="fas fa-shield-alt text-3xl text-orange-500"></i>
+            <div>
+              <h3 class="text-xl font-semibold">Fiabilité &amp; Sécurité</h3>
+              <p>Transport sécurisé et suivi rigoureux pour chaque envoi.</p>
+            </div>
+          </article>
+          <article class="flex items-center gap-4">
+            <i class="fas fa-shipping-fast text-3xl text-orange-500"></i>
+            <div>
+              <h3 class="text-xl font-semibold">Rapidité</h3>
+              <p>Des délais courts pour une livraison rapide et efficace.</p>
+            </div>
+          </article>
+          <article class="flex items-center gap-4">
+            <i class="fas fa-user-check text-3xl text-orange-500"></i>
+            <div>
+              <h3 class="text-xl font-semibold">Service personnalisé</h3>
+              <p>Nous adaptons nos solutions à chaque besoin spécifique.</p>
+            </div>
+          </article>
+          <article class="flex items-center gap-4">
+            <i class="fas fa-headset text-3xl text-orange-500"></i>
+            <div>
+              <h3 class="text-xl font-semibold">Support humain</h3>
+              <p>Une assistance client disponible et à votre écoute 7j/7.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+      <!-- Section: Fonctionnement (Services + FAQ) -->
+      <section id="fonctionnement" class="info-box fade-in">
+        <h3 class="text-2xl font-bold mb-4">Comment ça fonctionne ?</h3>
+        <div class="services-list">
+          <div class="service-item">
+            <span class="service-icon"><i class="fas fa-box-open"></i></span>
+            <div>
+              <h4 class="font-semibold mb-1">Réception</h4>
+              <p class="text-sm">
+                Nous réceptionnons vos commandes dans nos entrepôts en Chine.
+              </p>
+            </div>
+          </div>
+          <div class="service-item">
+            <span class="service-icon"><i class="fas fa-layer-group"></i></span>
+            <div>
+              <h4 class="font-semibold mb-1">Groupage</h4>
+              <p class="text-sm">
+                Vos colis sont regroupés avec d'autres pour réduire les coûts.
+              </p>
+            </div>
+          </div>
+          <div class="service-item">
+            <span class="service-icon"><i class="fas fa-plane"></i></span>
+            <div>
+              <h4 class="font-semibold mb-1">Expédition</h4>
+              <p class="text-sm">
+                Envoi rapide par avion ou économique par bateau, suivi régulier.
+              </p>
+            </div>
+          </div>
+          <div class="service-item">
+            <span class="service-icon"><i class="fas fa-home"></i></span>
+            <div>
+              <h4 class="font-semibold mb-1">Livraison</h4>
+              <p class="text-sm">
+                Livraison à Abidjan ou dans votre ville, à domicile ou en point relais.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary class="faq-question">Comment envoyer mes colis ?</summary>
+            <div class="faq-answer">
+              Indiquez à votre fournisseur l’adresse de notre entrepôt en Chine. Nous prenons le relais dès la réception.
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-question">Combien coûte le service ?</summary>
+            <div class="faq-answer">
+              Le tarif dépend du poids, du volume et du mode d’expédition. Demandez votre devis personnalisé.
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-question">Quels sont les délais de livraison ?</summary>
+            <div class="faq-answer">
+              Par avion : 10 à 15 jours ouvrés. Par bateau : 30 à 40 jours selon la période.
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-question">Où récupérer mon colis ?</summary>
+            <div class="faq-answer">
+              Livraison à domicile ou en point relais dans votre ville.
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-question">Que faire en cas de souci ?</summary>
+            <div class="faq-answer">
+              Notre service client est disponible pour vous accompagner et résoudre toute difficulté.
+            </div>
+          </details>
+        </div>
+      </section>
+      <!-- Section: Contact (placée en bas) avec boutons WhatsApp et Email -->
+      <section id="contact" class="fade-in">
+        <h3 class="text-2xl font-bold mb-4">Contactez-nous</h3>
+        <p>
+          Pour toute question, demande ou complément d'information, contactez-nous via WhatsApp ou par email.
+        </p>
+        <div class="contact-buttons">
+          <a href="https://wa.me/2250565978200" target="_blank" class="contact-btn">
+            <i class="fab fa-whatsapp"></i>
+            WhatsApp
+          </a>
+          <a href="mailto:contact@ketsiho.com" class="contact-btn">
+            <i class="fas fa-envelope"></i>
+            Email
+          </a>
+        </div>
+      </section>
+    </main>
+    <script>
+      const track = document.getElementById('carousel-track');
+      const slides = track.querySelectorAll('.carousel-slide');
+      const dots = document.querySelectorAll('.dot');
+      let currentIndex = 0;
+      
+      function getSlideWidth() {
+        return slides[0].getBoundingClientRect().width + 16;
+      }
+      
+      function updateDots(index) {
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === index);
+        });
+      }
+      
+      function highlightSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === index);
+        });
+      }
+      
+      function goToSlide(index) {
+        currentIndex = index;
+        const slideWidth = getSlideWidth();
+        track.scrollTo({ left: index * slideWidth, behavior: 'smooth' });
+        updateDots(index);
+        highlightSlide(index);
+      }
+      
+      function autoScroll() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        goToSlide(currentIndex);
+      }
+      
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const index = parseInt(dot.getAttribute('data-index'));
+          goToSlide(index);
+        });
       });
-    });
-  </script>
-</body>
+      
+      let interval = setInterval(autoScroll, 5000);
+      
+      track.addEventListener('touchstart', () => clearInterval(interval));
+      track.addEventListener('touchend', () => (interval = setInterval(autoScroll, 5000)));
+      
+      track.addEventListener('scroll', () => {
+        const slideWidth = getSlideWidth();
+        const scrollPos = track.scrollLeft;
+        const index = Math.round(scrollPos / slideWidth);
+        currentIndex = index;
+        updateDots(index);
+        highlightSlide(index);
+      });
+      
+      const fadeEls = document.querySelectorAll('.fade-in');
+      const observer = new IntersectionObserver(
+        (entries) => entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible')),
+        { threshold: 0.1 }
+      );
+      fadeEls.forEach(el => observer.observe(el));
+    </script>
+  </body>
 </html>
