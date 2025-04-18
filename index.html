@@ -1,249 +1,264 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KetSiho Shipping - Vitrine</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <style>
-    :root {
-      --orange: #f97316;
-      --orange-light: #fcd9b1;
-      --bg: #fffaf3;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg);
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-    }
-    .carousel-wrapper {
-      max-width: 1000px;
-      margin: 2rem auto 0;
-      overflow: hidden;
-      border-radius: 1rem;
-      background: white;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      position: relative;
-    }
-    .carousel-track {
-      display: flex;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none;
-    }
-    .carousel-track::-webkit-scrollbar { display: none; }
-    .carousel-slide {
-      flex: 0 0 auto;
-      width: 85vw;
-      max-width: 1000px;
-      height: 220px;
-      margin: 1rem 0.5rem;
-      border-radius: 1rem;
-      background-size: cover;
-      background-position: center;
-      scroll-snap-align: start;
-      position: relative;
-      transition: transform 0.3s;
-    }
-    .carousel-slide::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.2), transparent);
-    }
-    .carousel-slide.active {
-      animation: bounce 0.4s ease;
-    }
-    @keyframes bounce {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.03); }
-      100% { transform: scale(1); }
-    }
-    .carousel-fade-right {
-      position: absolute;
-      right: 0;
-      top: 0;
-      height: 100%;
-      width: 60px;
-      background: linear-gradient(to left, var(--bg), transparent);
-      z-index: 5;
-      pointer-events: none;
-    }
-    .carousel-dots {
-      display: none;
-    }
-    @media (min-width: 768px) {
-      .carousel-dots {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KetSiho Shipping - Vitrine</title>
+    <!-- Intégration de TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome pour les icônes -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary: #222222;
+        --secondary: #555555;
+        --bg: #f4f4f4;
+        --white: #ffffff;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--bg);
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+      /* Style du header et du menu en monochrome */
+      header {
+        background-color: var(--primary);
+        color: var(--white);
+      }
+      nav {
+        max-width: 7xl;
+        margin: 0 auto;
         display: flex;
-        justify-content: center;
-        gap: 0.5rem;
-        margin-top: 1rem;
-        margin-bottom: 2rem;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
       }
-      .dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 9999px;
-        background-color: var(--orange-light);
-        transition: background-color 0.3s;
-        cursor: pointer;
+      nav a {
+        color: var(--white);
+        text-decoration: none;
+        margin: 0 0.5rem;
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--secondary);
+        border-radius: 4px;
+        transition: background 0.3s, color 0.3s;
       }
-      .dot.active {
-        background-color: var(--orange);
+      nav a:hover,
+      nav a:focus {
+        background-color: var(--secondary);
       }
-    }
-    .fade-in {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.6s ease-in-out;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
-</head>
-<body class="text-gray-800">
-  <header class="bg-white shadow-md sticky top-0 z-50">
-    <nav class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2 p-4">
-      <a href="#" class="font-bold text-lg text-orange-600">KetSiho</a>
-      <div class="flex gap-2 flex-wrap justify-center">
-        <a href="#choisir" class="flex items-center justify-center px-4 py-1 md:rounded-full border border-orange-300 bg-orange-100 text-orange-600 hover:bg-orange-500 hover:text-white transition md:w-auto md:h-auto md:px-4 md:py-1 w-10 h-10 rounded-full">
-          <i class="fas fa-star"></i>
-          <span class="hidden md:inline ml-2">Pourquoi nous choisir</span>
-        </a>
-        <a href="#fonctionnement" class="flex items-center justify-center px-4 py-1 md:rounded-full border border-orange-300 bg-orange-100 text-orange-600 hover:bg-orange-500 hover:text-white transition md:w-auto md:h-auto md:px-4 md:py-1 w-10 h-10 rounded-full">
-          <i class="fas fa-cogs"></i>
-          <span class="hidden md:inline ml-2">Fonctionnement</span>
-        </a>
-        <a href="#contact" class="flex items-center justify-center px-4 py-1 md:rounded-full border border-orange-300 bg-orange-100 text-orange-600 hover:bg-orange-500 hover:text-white transition md:w-auto md:h-auto md:px-4 md:py-1 w-10 h-10 rounded-full">
-          <i class="fas fa-envelope"></i>
-          <span class="hidden md:inline ml-2">Contact</span>
-        </a>
-      </div>
-    </nav>
-  </header>
-
-  <!-- SLIDER + DOTS -->
-  <section class="carousel-wrapper">
-    <div class="carousel-track" id="carousel-track">
-      <div class="carousel-slide" style="background-image: url('https://placehold.co/800x220/f97316/fff?text=1');"></div>
-      <div class="carousel-slide" style="background-image: url('https://placehold.co/800x220/ea580c/fff?text=2');"></div>
-      <div class="carousel-slide" style="background-image: url('https://placehold.co/800x220/f59e0b/fff?text=3');"></div>
-    </div>
-    <div class="carousel-fade-right"></div>
-  </section>
-  <div class="carousel-dots" id="carousel-dots">
-    <span class="dot active" data-index="0"></span>
-    <span class="dot" data-index="1"></span>
-    <span class="dot" data-index="2"></span>
-  </div>
-
-  <!-- Pourquoi nous choisir -->
-  <section id="choisir" class="max-w-6xl mx-auto px-4 py-16 fade-in">
-    <h2 class="text-3xl font-bold text-center text-orange-600 mb-10">Pourquoi nous choisir ?</h2>
-    <div class="grid md:grid-cols-2 gap-8">
-      <div class="flex items-start gap-4">
-        <i class="fas fa-shield-alt text-3xl text-orange-500"></i>
-        <div>
-          <h3 class="text-xl font-semibold">Fiabilité & Sécurité</h3>
-          <p>Transport sécurisé et suivi rigoureux pour chaque envoi.</p>
-        </div>
-      </div>
-      <div class="flex items-start gap-4">
-        <i class="fas fa-shipping-fast text-3xl text-orange-500"></i>
-        <div>
-          <h3 class="text-xl font-semibold">Rapidité</h3>
-          <p>Des délais courts pour une livraison rapide et efficace.</p>
-        </div>
-      </div>
-      <div class="flex items-start gap-4">
-        <i class="fas fa-user-check text-3xl text-orange-500"></i>
-        <div>
-          <h3 class="text-xl font-semibold">Service personnalisé</h3>
-          <p>Nous adaptons nos solutions à chaque besoin spécifique.</p>
-        </div>
-      </div>
-      <div class="flex items-start gap-4">
-        <i class="fas fa-headset text-3xl text-orange-500"></i>
-        <div>
-          <h3 class="text-xl font-semibold">Support humain</h3>
-          <p>Une assistance client disponible et à votre écoute 7j/7.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <script>
-    const track = document.getElementById('carousel-track');
-    const slides = track.querySelectorAll('.carousel-slide');
-    const dots = document.querySelectorAll('.dot');
-    let currentIndex = 0;
-
-    function getSlideWidth() {
-      return slides[0].getBoundingClientRect().width + 16;
-    }
-
-    function updateDots(index) {
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
-      });
-    }
-
-    function highlightSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
-      });
-    }
-
-    function goToSlide(index) {
-      currentIndex = index;
-      const slideWidth = getSlideWidth();
-      track.scrollTo({ left: index * slideWidth, behavior: 'smooth' });
-      updateDots(index);
-      highlightSlide(index);
-    }
-
-    function autoScroll() {
-      currentIndex++;
-      if (currentIndex >= slides.length) {
-        currentIndex = 0;
+      /* Carrousel */
+      .carousel-wrapper {
+        max-width: 1000px;
+        margin: 2rem auto 0;
+        overflow: hidden;
+        border-radius: 1rem;
+        background: var(--white);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        position: relative;
       }
-      goToSlide(currentIndex);
-    }
-
-    dots.forEach(dot => {
-      dot.addEventListener('click', () => {
-        const index = parseInt(dot.getAttribute('data-index'));
-        goToSlide(index);
+      .carousel-track {
+        display: flex;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+      }
+      .carousel-track::-webkit-scrollbar { display: none; }
+      .carousel-slide {
+        flex: 0 0 auto;
+        width: 85vw;
+        max-width: 1000px;
+        aspect-ratio: 16 / 9;
+        margin: 1rem 0.5rem;
+        border-radius: 1rem;
+        background-size: cover;
+        background-position: center;
+        scroll-snap-align: start;
+        position: relative;
+        transition: transform 0.3s;
+      }
+      .carousel-slide::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.2), transparent);
+      }
+      .carousel-slide.active {
+        animation: bounce 0.4s ease;
+      }
+      @keyframes bounce {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.03); }
+        100% { transform: scale(1); }
+      }
+      .carousel-fade-right {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 60px;
+        background: linear-gradient(to left, var(--white), transparent);
+        z-index: 5;
+        pointer-events: none;
+      }
+      .carousel-dots {
+        display: none;
+      }
+      @media (min-width: 768px) {
+        .carousel-dots {
+          display: flex;
+          justify-content: center;
+          gap: 0.5rem;
+          margin-top: 1rem;
+          margin-bottom: 2rem;
+        }
+        .dot {
+          width: 12px;
+          height: 12px;
+          border-radius: 9999px;
+          background-color: var(--secondary);
+          transition: background-color 0.3s;
+          cursor: pointer;
+        }
+        .dot.active {
+          background-color: var(--primary);
+        }
+      }
+      .fade-in {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.6s ease-in-out;
+      }
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body class="text-gray-800">
+    <header role="banner">
+      <nav aria-label="Navigation principale">
+        <a href="#" class="font-bold text-lg">KetSiho</a>
+        <div class="flex gap-2 flex-wrap justify-center">
+          <a href="#choisir">
+            <i class="fas fa-star" aria-hidden="true"></i>
+            <span class="hidden md:inline ml-2">Pourquoi nous choisir</span>
+          </a>
+          <a href="#fonctionnement">
+            <i class="fas fa-cogs" aria-hidden="true"></i>
+            <span class="hidden md:inline ml-2">Fonctionnement</span>
+          </a>
+          <a href="#contact">
+            <i class="fas fa-envelope" aria-hidden="true"></i>
+            <span class="hidden md:inline ml-2">Contact</span>
+          </a>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section class="carousel-wrapper" aria-label="Carrousel d'images">
+        <div class="carousel-track" id="carousel-track">
+          <div class="carousel-slide" style="background-image: url('https://placehold.co/800x400/222222/fff?text=1');" role="img" aria-label="Image 1"></div>
+          <div class="carousel-slide" style="background-image: url('https://placehold.co/800x400/333333/fff?text=2');" role="img" aria-label="Image 2"></div>
+          <div class="carousel-slide" style="background-image: url('https://placehold.co/800x400/555555/fff?text=3');" role="img" aria-label="Image 3"></div>
+        </div>
+        <div class="carousel-fade-right" aria-hidden="true"></div>
+      </section>
+      <div class="carousel-dots" id="carousel-dots">
+        <span class="dot active" data-index="0" aria-label="Aller à l'image 1" role="button"></span>
+        <span class="dot" data-index="1" aria-label="Aller à l'image 2" role="button"></span>
+        <span class="dot" data-index="2" aria-label="Aller à l'image 3" role="button"></span>
+      </div>
+      <section id="choisir" class="max-w-6xl mx-auto px-4 py-16 fade-in">
+        <h2 class="text-3xl font-bold text-center mb-10" style="color: var(--primary);">
+          Pourquoi nous choisir ?
+        </h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <article class="flex items-start gap-4">
+            <i class="fas fa-shield-alt text-3xl" style="color: var(--primary);" aria-hidden="true"></i>
+            <div>
+              <h3 class="text-xl font-semibold">Fiabilité &amp; Sécurité</h3>
+              <p>Transport sécurisé et suivi rigoureux pour chaque envoi.</p>
+            </div>
+          </article>
+          <article class="flex items-start gap-4">
+            <i class="fas fa-shipping-fast text-3xl" style="color: var(--primary);" aria-hidden="true"></i>
+            <div>
+              <h3 class="text-xl font-semibold">Rapidité</h3>
+              <p>Des délais courts pour une livraison rapide et efficace.</p>
+            </div>
+          </article>
+          <article class="flex items-start gap-4">
+            <i class="fas fa-user-check text-3xl" style="color: var(--primary);" aria-hidden="true"></i>
+            <div>
+              <h3 class="text-xl font-semibold">Service personnalisé</h3>
+              <p>Nous adaptons nos solutions à chaque besoin spécifique.</p>
+            </div>
+          </article>
+          <article class="flex items-start gap-4">
+            <i class="fas fa-headset text-3xl" style="color: var(--primary);" aria-hidden="true"></i>
+            <div>
+              <h3 class="text-xl font-semibold">Support humain</h3>
+              <p>Une assistance client disponible et à votre écoute 7j/7.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+    <script>
+      const track = document.getElementById('carousel-track');
+      const slides = track.querySelectorAll('.carousel-slide');
+      const dots = document.querySelectorAll('.dot');
+      let currentIndex = 0;
+      function getSlideWidth() {
+        return slides[0].getBoundingClientRect().width + 16;
+      }
+      function updateDots(index) {
+        dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+      }
+      function highlightSlide(index) {
+        slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+      }
+      function goToSlide(index) {
+        currentIndex = index;
+        const slideWidth = getSlideWidth();
+        track.scrollTo({ left: index * slideWidth, behavior: 'smooth' });
+        updateDots(index);
+        highlightSlide(index);
+      }
+      function autoScroll() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        goToSlide(currentIndex);
+      }
+      dots.forEach(dot =>
+        dot.addEventListener('click', () => {
+          const index = parseInt(dot.getAttribute('data-index'));
+          goToSlide(index);
+        })
+      );
+      let interval = setInterval(autoScroll, 5000);
+      track.addEventListener('touchstart', () => clearInterval(interval));
+      track.addEventListener('touchend', () => (interval = setInterval(autoScroll, 5000)));
+      track.addEventListener('scroll', () => {
+        const slideWidth = getSlideWidth();
+        const scrollPos = track.scrollLeft;
+        const index = Math.round(scrollPos / slideWidth);
+        currentIndex = index;
+        updateDots(index);
+        highlightSlide(index);
       });
-    });
-
-    let interval = setInterval(autoScroll, 5000);
-
-    track.addEventListener('touchstart', () => clearInterval(interval));
-    track.addEventListener('touchend', () => interval = setInterval(autoScroll, 5000));
-
-    track.addEventListener('scroll', () => {
-      const slideWidth = getSlideWidth();
-      const scrollPos = track.scrollLeft;
-      const index = Math.round(scrollPos / slideWidth);
-      currentIndex = index;
-      updateDots(index);
-      highlightSlide(index);
-    });
-
-    const fadeEls = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.1 });
-    fadeEls.forEach(el => observer.observe(el));
-  </script>
-</body>
+      const fadeEls = document.querySelectorAll('.fade-in');
+      const observer = new IntersectionObserver(
+        entries => entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible')),
+        { threshold: 0.1 }
+      );
+      fadeEls.forEach(el => observer.observe(el));
+    </script>
+  </body>
 </html>
