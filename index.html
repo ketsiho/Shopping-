@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>KetSiho Shipping - Vitrine</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
   <style>
     :root {
@@ -19,7 +18,76 @@
       margin: 0;
       padding: 0;
       overflow-x: hidden;
+      color: #27272a;
     }
+    header {
+      background: #fff;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 1rem;
+    }
+    .nav-logo {
+      color: var(--orange);
+      font-weight: bold;
+      font-size: 1.25rem;
+      letter-spacing: 1px;
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 8px;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      border: 2px solid var(--orange);
+      border-radius: 9999px;
+      background: var(--bg);
+      color: var(--orange);
+      font-weight: 600;
+      font-size: 1.05rem;
+      text-decoration: none;
+      padding: 0.5rem 1.5rem;
+      gap: 0.5rem;
+      transition: all 0.2s;
+      min-height: 44px;
+      cursor: pointer;
+    }
+    .nav-item:hover, .nav-item:focus {
+      background: var(--orange-light);
+      color: #fff;
+      outline: none;
+    }
+    .nav-text {
+      display: inline;
+    }
+    @media (max-width: 767px) {
+      .nav-links {
+        gap: 5px;
+      }
+      .nav-item {
+        padding: 0.5rem 0.5rem;
+        min-width: 46px;
+        min-height: 46px;
+        font-size: 1.2rem;
+        justify-content: center;
+      }
+      .nav-text {
+        display: none;
+      }
+    }
+
+    /* Fade-in animation */
     .fade-in-section {
       opacity: 0;
       transform: translateY(60px) scale(0.97);
@@ -178,7 +246,6 @@
         background-color: var(--orange);
       }
     }
-    /* Box structure for "Services & FAQ" */
     .info-box {
       max-width: 800px;
       margin: 2rem auto;
@@ -284,6 +351,7 @@
       text-decoration: none;
       font-weight: bold;
       transition: transform 0.3s ease, background-color 0.3s ease;
+      font-size: 1rem;
     }
     .contact-btn i {
       margin-right: 0.5rem;
@@ -292,64 +360,13 @@
       background-color: var(--orange-light);
       transform: scale(1.05);
     }
-    /* NAV MENU OVALE ORANGE + RESPONSIVE */
-    .nav-item {
-      background-color: var(--bg);
-      border: 2px solid var(--orange);
-      border-radius: 9999px;
-      padding: 0.5rem 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: all 0.3s;
-      text-decoration: none;
-      color: var(--orange);
-      font-weight: bold;
-      font-size: 1.06rem;
-      margin: 0 2px;
-      min-height: 44px;
-    }
-    .nav-item:hover,
-    .nav-item:focus {
-      background-color: var(--orange-light);
-      color: #fff;
-      border-color: var(--orange);
-    }
-    @media (max-width: 767px) {
-      .nav-item {
-        border-radius: 9999px;
-        padding: 0.5rem;
-        justify-content: center;
-        width: 46px;
-        height: 46px;
-        gap: 0;
-        font-size: 1.16rem;
-        min-width: 46px;
-      }
-      .nav-text {
-        display: none !important;
-      }
-      nav > .flex { gap: 6px !important; }
-    }
-    @media (min-width: 768px) {
-      .nav-text {
-        display: inline;
-      }
-    }
-    nav {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
   </style>
 </head>
-<body class="text-gray-800">
-  <header role="banner">
-    <nav aria-label="Navigation principale">
-      <a href="#" class="text-lg" style="color: var(--orange); font-weight: bold;">KetSiho</a>
-      <div class="flex gap-3">
+<body>
+  <header>
+    <nav>
+      <a href="#" class="nav-logo">KetSiho</a>
+      <div class="nav-links">
         <a href="#choisir" class="nav-item">
           <i class="fas fa-star"></i>
           <span class="nav-text">Pourquoi nous choisir</span>
@@ -598,11 +615,10 @@
         whatsappNameInput.value = "";
       }
     });
-    // Générer le message et ouvrir WhatsApp
     sendWhatsappBtn.addEventListener('click', function(){
       const name = whatsappNameInput.value.trim();
       let userName = name ? name : "un visiteur";
       const message = encodeURIComponent(
         `Bonjour, je suis ${userName}. Je suis intéressé par vos services et souhaite avoir plus d'informations.`
       );
-      window.open(`https://wa.me/${whats
+      
