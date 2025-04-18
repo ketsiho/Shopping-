@@ -95,7 +95,10 @@
       background: #ea580c;
       transform: scale(1.04);
     }
-    /* Carousel */
+    @media (max-width: 600px) {
+      .whatsapp-modal-content { min-width: 95vw; }
+    }
+    /* Carousel & Responsive tweaks */
     .carousel-wrapper {
       max-width: 1000px;
       margin: 2rem auto 0;
@@ -288,6 +291,57 @@
     .contact-btn:hover {
       background-color: var(--orange-light);
       transform: scale(1.05);
+    }
+    /* NAV MENU OVALE ORANGE + RESPONSIVE */
+    .nav-item {
+      background-color: var(--bg);
+      border: 2px solid var(--orange);
+      border-radius: 9999px;
+      padding: 0.5rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: var(--orange);
+      font-weight: bold;
+      font-size: 1.06rem;
+      margin: 0 2px;
+      min-height: 44px;
+    }
+    .nav-item:hover,
+    .nav-item:focus {
+      background-color: var(--orange-light);
+      color: #fff;
+      border-color: var(--orange);
+    }
+    @media (max-width: 767px) {
+      .nav-item {
+        border-radius: 9999px;
+        padding: 0.5rem;
+        justify-content: center;
+        width: 46px;
+        height: 46px;
+        gap: 0;
+        font-size: 1.16rem;
+        min-width: 46px;
+      }
+      .nav-text {
+        display: none !important;
+      }
+      nav > .flex { gap: 6px !important; }
+    }
+    @media (min-width: 768px) {
+      .nav-text {
+        display: inline;
+      }
+    }
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
   </style>
 </head>
@@ -551,13 +605,4 @@
       const message = encodeURIComponent(
         `Bonjour, je suis ${userName}. Je suis intéressé par vos services et souhaite avoir plus d'informations.`
       );
-      window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
-      whatsappModal.style.display = "none";
-      whatsappNameInput.value = "";
-    });
-    whatsappNameInput.addEventListener('keydown', function(e){
-      if(e.key === "Enter") sendWhatsappBtn.click();
-    });
-  </script>
-</body>
-</html>
+      window.open(`https://wa.me/${whats
