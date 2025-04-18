@@ -3,329 +3,393 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Armand &amp; Siho Shipping</title>
+    <title>KetSiho Shipping - Vitrine</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" 
     />
     <style>
       :root {
-        --dark-blue: #1A237E;
         --orange: #f97316;
         --orange-light: #fcd9b1;
-        --bg-light: #f0f4f8;
+        --bg: #fffaf3;
+        --contact-bg: rgba(255, 255, 255, 0.8);
       }
       body {
         font-family: 'Inter', sans-serif;
-        background-color: var(--bg-light);
+        background-color: var(--bg);
         margin: 0;
         padding: 0;
-        scroll-behavior: smooth;
+        overflow-x: hidden;
       }
-      /* Header/Navigation */
       header {
-        background-color: var(--dark-blue);
-        color: white;
+        background-color: white;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         padding: 1rem 2rem;
-        position: fixed;
-        width: 100%;
-        z-index: 1000;
       }
       nav {
         max-width: 1200px;
         margin: 0 auto;
         display: flex;
-        align-items: center;
         justify-content: space-between;
+        align-items: center;
       }
-      .logo {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: var(--orange);
-      }
-      .nav-links a {
-        margin-left: 1rem;
-        color: white;
-        text-decoration: none;
-        font-weight: 500;
-        transition: color 0.3s;
-      }
-      .nav-links a:hover {
-        color: var(--orange-light);
-      }
-      /* Sections */
-      section {
-        padding: 100px 2rem 50px; /* add top padding for fixed header */
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-      .hero {
-        background: url('https://via.placeholder.com/1200x600?text=Shipping+Hero') center/cover no-repeat;
-        height: 600px;
+      .nav-item {
+        background-color: var(--bg);
+        border: 2px solid var(--orange);
+        border-radius: 50px;
+        padding: 0.5rem 1.5rem;
         display: flex;
         align-items: center;
-        justify-content: center;
-        position: relative;
-        color: white;
-        text-align: center;
+        gap: 0.5rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: var(--orange);
+        font-weight: bold;
       }
-      .hero::after {
+      .nav-item:hover,
+      .nav-item:focus {
+        background-color: var(--orange-light);
+      }
+      @media (max-width: 767px) {
+        .nav-item {
+          border-radius: 50%;
+          padding: 0.5rem;
+          justify-content: center;
+          width: 48px;
+          height: 48px;
+          gap: 0;
+        }
+        .nav-text {
+          display: none;
+        }
+      }
+      @media (min-width: 768px) {
+        .nav-text {
+          display: inline;
+        }
+      }
+      /* Carousel Section */
+      .carousel-wrapper {
+        max-width: 1000px;
+        margin: 2rem auto 0;
+        overflow: hidden;
+        border-radius: 1rem;
+        background: white;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        position: relative;
+      }
+      .carousel-track {
+        display: flex;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+      }
+      .carousel-track::-webkit-scrollbar {
+        display: none;
+      }
+      .carousel-slide {
+        flex: 0 0 auto;
+        width: 85vw;
+        max-width: 1000px;
+        aspect-ratio: 16 / 9;
+        margin: 1rem 0.5rem;
+        border-radius: 1rem;
+        background-size: cover;
+        background-position: center;
+        scroll-snap-align: start;
+        position: relative;
+        transition: transform 0.3s;
+      }
+      .carousel-slide::after {
         content: "";
         position: absolute;
         inset: 0;
-        background-color: rgba(26, 35, 126, 0.6);
+        background: linear-gradient(to top, rgba(0,0,0,0.2), transparent);
       }
-      .hero h1 {
-        position: relative;
-        font-size: 3rem;
-        z-index: 1;
+      .carousel-slide.active {
+        animation: bounce 0.4s ease;
       }
-      .about, .products, .contact, .payment {
-        background-color: white;
-        border-radius: 10px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        padding: 2rem;
-        margin-bottom: 2rem;
+      @keyframes bounce {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.03); }
+        100% { transform: scale(1); }
       }
-      .section-title {
-        color: var(--dark-blue);
-        font-size: 2rem;
-        margin-bottom: 1rem;
-        text-align: center;
+      .carousel-fade-right {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 60px;
+        background: linear-gradient(to left, var(--bg), transparent);
+        z-index: 5;
+        pointer-events: none;
       }
-      /* Product cards */
-      .product-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1rem;
+      .carousel-dots {
+        display: none;
       }
-      .product-card {
-        border: 1px solid var(--orange);
-        border-radius: 10px;
-        overflow: hidden;
+      @media (min-width: 768px) {
+        .carousel-dots {
+          display: flex;
+          justify-content: center;
+          gap: 0.5rem;
+          margin-top: 1rem;
+          margin-bottom: 2rem;
+        }
+        .dot {
+          width: 12px;
+          height: 12px;
+          border-radius: 9999px;
+          background-color: var(--orange-light);
+          transition: background-color 0.3s;
+          cursor: pointer;
+        }
+        .dot.active {
+          background-color: var(--orange);
+        }
       }
-      .product-card img {
-        width: 100%;
-        display: block;
-      }
-      .product-card .card-content {
-        padding: 1rem;
-      }
-      /* Payment methods section */
-      .payment-methods {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        justify-content: center;
-      }
-      .payment-btn {
-        flex: 1 1 200px;
-        border: 2px solid var(--orange);
-        border-radius: 10px;
-        padding: 1rem;
-        text-align: center;
-        color: var(--dark-blue);
-        font-weight: bold;
-        transition: transform 0.3s, background-color 0.3s;
-      }
-      .payment-btn:hover {
-        background-color: var(--orange-light);
-        transform: scale(1.05);
-      }
-      /* Contact buttons */
-      .contact-buttons {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        margin-top: 1rem;
-      }
-      .contact-btn {
-        flex: 1 1 200px;
-        border: 2px solid var(--orange);
-        border-radius: 10px;
-        padding: 1rem;
-        text-align: center;
-        color: var(--dark-blue);
-        font-weight: bold;
-        transition: transform 0.3s, background-color 0.3s;
-        text-decoration: none;
-      }
-      .contact-btn:hover {
-        background-color: var(--orange-light);
-        transform: scale(1.05);
-      }
-      /* Contact Form */
-      form {
-        display: grid;
-        gap: 1rem;
-        max-width: 500px;
-        margin: 1rem auto;
-      }
-      form input, form textarea {
-        padding: 0.75rem;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-      }
-      form button {
-        background-color: var(--orange);
-        color: white;
-        padding: 0.75rem;
-        border: none;
-        border-radius: 8px;
-        font-weight: bold;
-        transition: background-color 0.3s;
-      }
-      form button:hover {
-        background-color: var(--orange-light);
-      }
-      /* Fade-in Animation */
       .fade-in {
         opacity: 0;
         transform: translateY(40px);
-        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        transition: all 0.6s ease-in-out;
       }
       .fade-in.visible {
         opacity: 1;
         transform: translateY(0);
       }
+      /* Box structure for "Informations importantes du Sud" */
+      .info-box {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 1.5rem;
+        background-color: #ffffff;
+        border: 2px solid var(--orange);
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      }
+      .info-box h3 {
+        margin-top: 0;
+        color: var(--orange);
+      }
+      /* Contact Section at the bottom with WhatsApp & Mail buttons */
+      #contact {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 1.5rem;
+        background-color: var(--contact-bg);
+        border: 2px solid var(--orange);
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        backdrop-filter: blur(4px);
+      }
+      #contact h3 {
+        margin-top: 0;
+        color: var(--orange);
+      }
+      .contact-buttons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      .contact-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        border: 2px solid var(--orange);
+        border-radius: 10px;
+        background-color: var(--contact-bg);
+        color: var(--orange);
+        text-decoration: none;
+        font-weight: bold;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+      }
+      .contact-btn i {
+        margin-right: 0.5rem;
+      }
+      .contact-btn:hover {
+        background-color: var(--orange-light);
+        transform: scale(1.05);
+      }
     </style>
   </head>
-  <body>
-    <!-- Header / Navigation -->
-    <header>
-      <nav>
-        <div class="logo">Armand &amp; Siho Shipping</div>
-        <div class="nav-links">
-          <a href="#accueil">Accueil</a>
-          <a href="#a-propos">À propos</a>
-          <a href="#produits">Produits</a>
-          <a href="#paiement">Panier &amp; Paiement</a>
-          <a href="#contact">Contact</a>
+  <body class="text-gray-800">
+    <header role="banner">
+      <nav aria-label="Navigation principale">
+        <a href="#" class="text-lg" style="color: var(--orange); font-weight: bold;">KetSiho</a>
+        <div class="flex gap-3">
+          <a href="#choisir" class="nav-item">
+            <i class="fas fa-star"></i>
+            <span class="nav-text">Pourquoi nous choisir</span>
+          </a>
+          <a href="#fonctionnement" class="nav-item">
+            <i class="fas fa-cogs"></i>
+            <span class="nav-text">Fonctionnement</span>
+          </a>
+          <a href="#contact" class="nav-item">
+            <i class="fas fa-envelope"></i>
+            <span class="nav-text">Contact</span>
+          </a>
         </div>
       </nav>
     </header>
-
-    <!-- Hero Section -->
-    <section id="accueil" class="hero fade-in">
-      <h1>Bienvenue chez Armand &amp; Siho Shipping</h1>
-    </section>
-
-    <!-- À propos Section -->
-    <section id="a-propos" class="about fade-in">
-      <h2 class="section-title">À propos</h2>
-      <p>
-        Chez Armand &amp; Siho Shipping, nous mettons l’Europe à portée de main pour tous les Ivoiriens.
-        Spécialisés dans l’achat et l’expédition de produits depuis l’Europe vers la Côte d’Ivoire, nous offrons
-        un service complet de commande à livraison, basé sur la fiabilité et la transparence. Commandez en toute
-        confiance : simple, rapide et sécurisé.
-      </p>
-    </section>
-
-    <!-- Produits Section -->
-    <section id="produits" class="products fade-in">
-      <h2 class="section-title">Nos Produits</h2>
-      <div class="product-grid">
-        <!-- Exemple de produit 1 -->
-        <div class="product-card">
-          <img src="https://via.placeholder.com/400x300?text=Produit+1" alt="Produit 1" />
-          <div class="card-content">
-            <h3>Produit 1 — Électronique Européenne</h3>
-            <p>
-              Profitez de la qualité et de la fiabilité des appareils électroniques européens.
-              Livraison sécurisée, garantie satisfaction !
-            </p>
-          </div>
+    <main>
+      <!-- Section: Carrousel -->
+      <section class="carousel-wrapper" aria-label="Carrousel d'images">
+        <div class="carousel-track" id="carousel-track">
+          <div class="carousel-slide" style="background-image: url('https://placehold.co/800x400/f97316/fff?text=1');" role="img" aria-label="Image 1"></div>
+          <div class="carousel-slide" style="background-image: url('https://placehold.co/800x400/ea580c/fff?text=2');" role="img" aria-label="Image 2"></div>
+          <div class="carousel-slide" style="background-image: url('https://placehold.co/800x400/f59e0b/fff?text=3');" role="img" aria-label="Image 3"></div>
         </div>
-        <!-- Exemple de produit 2 (seconde proposition) -->
-        <div class="product-card">
-          <img src="https://via.placeholder.com/400x300?text=Produit+2" alt="Produit 2" />
-          <div class="card-content">
-            <h3>Produit 2 — Mode &amp; Accessoires</h3>
-            <p>
-              Des vêtements stylés et des accessoires tendance, sélectionnés en Europe et livrés directement
-              chez vous en Côte d’Ivoire.
-            </p>
-          </div>
-        </div>
-        <!-- Exemple de produit 3 -->
-        <div class="product-card">
-          <img src="https://via.placeholder.com/400x300?text=Produit+3" alt="Produit 3" />
-          <div class="card-content">
-            <h3>Produit 3 — Équipements Maison &amp; Bricolage</h3>
-            <p>
-              Transformez votre maison avec des équipements durables et pratiques venus d’Europe, 
-              soigneusement expédiés jusqu’à votre porte.
-            </p>
-          </div>
-        </div>
+        <div class="carousel-fade-right" aria-hidden="true"></div>
+      </section>
+      <div class="carousel-dots" id="carousel-dots">
+        <span class="dot active" data-index="0" aria-label="Aller à l'image 1"></span>
+        <span class="dot" data-index="1" aria-label="Aller à l'image 2"></span>
+        <span class="dot" data-index="2" aria-label="Aller à l'image 3"></span>
       </div>
-    </section>
-
-    <!-- Paiement Section -->
-    <section id="paiement" class="payment fade-in">
-      <h2 class="section-title">Panier &amp; Achat en ligne</h2>
-      <p style="text-align: center;">
-        Sélectionnez votre mode de paiement pour finaliser votre commande.
-      </p>
-      <div class="payment-methods">
-        <div class="payment-btn">
-          <i class="fas fa-credit-card"></i> Visa
+      <!-- Section: Pourquoi nous choisir -->
+      <section id="choisir" class="max-w-6xl mx-auto px-4 py-16 fade-in">
+        <h2 class="text-3xl font-bold text-center text-orange-600 mb-10">Pourquoi nous choisir ?</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <article class="flex items-center gap-4">
+            <i class="fas fa-shield-alt text-3xl text-orange-500"></i>
+            <div>
+              <h3 class="text-xl font-semibold">Fiabilité &amp; Sécurité</h3>
+              <p>Transport sécurisé et suivi rigoureux pour chaque envoi.</p>
+            </div>
+          </article>
+          <article class="flex items-center gap-4">
+            <i class="fas fa-shipping-fast text-3xl text-orange-500"></i>
+            <div>
+              <h3 class="text-xl font-semibold">Rapidité</h3>
+              <p>Des délais courts pour une livraison rapide et efficace.</p>
+            </div>
+          </article>
+          <article class="flex items-center gap-4">
+            <i class="fas fa-user-check text-3xl text-orange-500"></i>
+            <div>
+              <h3 class="text-xl font-semibold">Service personnalisé</h3>
+              <p>Nous adaptons nos solutions à chaque besoin spécifique.</p>
+            </div>
+          </article>
+          <article class="flex items-center gap-4">
+            <i class="fas fa-headset text-3xl text-orange-500"></i>
+            <div>
+              <h3 class="text-xl font-semibold">Support humain</h3>
+              <p>Une assistance client disponible et à votre écoute 7j/7.</p>
+            </div>
+          </article>
         </div>
-        <div class="payment-btn">
-          <i class="fas fa-mobile-alt"></i> Mobile Money (Orange)
+      </section>
+      <!-- Section: Informations importantes du Sud -->
+      <section class="info-box fade-in">
+        <h3 class="text-2xl font-bold mb-4">Informations importantes du Sud</h3>
+        <p>
+          Voici les informations essentielles concernant la région du Sud. 
+          Nous simplifions vos achats et garantissons une expédition rapide et fiable.
+        </p>
+        <p>
+          <strong>Numéro d'appel affiché :</strong> 05 65 97 82 00<br/>
+          <strong>Lien cliquable (tel):</strong> +2250799453981<br/>
+          <strong>WhatsApp direct (script):</strong> +2250565978200
+        </p>
+        <p>
+          <strong>Expédition et livraison :</strong> Envoi vers la Côte d’Ivoire avec suivi, remise en main propre ou point relais.
+        </p>
+        <p>
+          <strong>Mission :</strong> Simplifier vos achats en Chine et garantir une expédition rapide, fiable et sécurisée jusqu’à votre porte en Côte d’Ivoire.
+        </p>
+        <p>
+          <strong>Avantage "Rapidité" :</strong> Des délais maîtrisés, respectés et annoncés dès la commande.
+        </p>
+        <p>
+          <strong>Service complémentaire :</strong> Suivi de colis — En temps réel.
+        </p>
+      </section>
+      <!-- Section: Contact (placée en bas) avec boutons WhatsApp et Email -->
+      <section id="contact" class="fade-in">
+        <h3 class="text-2xl font-bold mb-4">Contactez-nous</h3>
+        <p>
+          Pour toute question, demande ou complément d'information, contactez-nous via WhatsApp ou par email.
+        </p>
+        <div class="contact-buttons">
+          <a href="https://wa.me/2250565978200" target="_blank" class="contact-btn">
+            <i class="fab fa-whatsapp"></i>
+            WhatsApp
+          </a>
+          <a href="mailto:contact@ketsiho.com" class="contact-btn">
+            <i class="fas fa-envelope"></i>
+            Email
+          </a>
         </div>
-        <div class="payment-btn">
-          <i class="fas fa-mobile-alt"></i> Mobile Money (Moov)
-        </div>
-        <div class="payment-btn">
-          <i class="fas fa-mobile-alt"></i> Mobile Money (MTN)
-        </div>
-        <div class="payment-btn">
-          <i class="fas fa-mobile-alt"></i> Mobile Money (Wave)
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact fade-in">
-      <h2 class="section-title">Contact &amp; Assistance</h2>
-      <p style="text-align: center;">
-        Vous avez une question ou besoin d’assistance ? Contactez-nous via WhatsApp, par email ou en
-        remplissant le formulaire ci-dessous.
-      </p>
-      <div class="contact-buttons" style="justify-content: center; margin-bottom: 2rem;">
-        <a href="https://wa.me/2250565978200" target="_blank" class="contact-btn">
-          <i class="fab fa-whatsapp"></i> WhatsApp
-        </a>
-        <a href="mailto:contact@armandsiho.com" class="contact-btn">
-          <i class="fas fa-envelope"></i> Email
-        </a>
-      </div>
-      <!-- Contact Form using Formspree -->
-      <form action="https://formspree.io/f/abcxyz" method="POST">
-        <input type="text" name="nom" placeholder="Votre nom" required />
-        <input type="email" name="email" placeholder="Votre email" required />
-        <textarea name="message" placeholder="Votre message" rows="4" required></textarea>
-        <button type="submit">Envoyer</button>
-      </form>
-    </section>
-
+      </section>
+    </main>
     <script>
-      // Intersection Observer for fade-in animations
-      const fadeElems = document.querySelectorAll('.fade-in');
+      const track = document.getElementById('carousel-track');
+      const slides = track.querySelectorAll('.carousel-slide');
+      const dots = document.querySelectorAll('.dot');
+      let currentIndex = 0;
+      
+      function getSlideWidth() {
+        return slides[0].getBoundingClientRect().width + 16;
+      }
+      
+      function updateDots(index) {
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === index);
+        });
+      }
+      
+      function highlightSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === index);
+        });
+      }
+      
+      function goToSlide(index) {
+        currentIndex = index;
+        const slideWidth = getSlideWidth();
+        track.scrollTo({ left: index * slideWidth, behavior: 'smooth' });
+        updateDots(index);
+        highlightSlide(index);
+      }
+      
+      function autoScroll() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        goToSlide(currentIndex);
+      }
+      
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const index = parseInt(dot.getAttribute('data-index'));
+          goToSlide(index);
+        });
+      });
+      
+      let interval = setInterval(autoScroll, 5000);
+      
+      track.addEventListener('touchstart', () => clearInterval(interval));
+      track.addEventListener('touchend', () => (interval = setInterval(autoScroll, 5000)));
+      
+      track.addEventListener('scroll', () => {
+        const slideWidth = getSlideWidth();
+        const scrollPos = track.scrollLeft;
+        const index = Math.round(scrollPos / slideWidth);
+        currentIndex = index;
+        updateDots(index);
+        highlightSlide(index);
+      });
+      
+      const fadeEls = document.querySelectorAll('.fade-in');
       const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        },
+        (entries) => entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible')),
         { threshold: 0.1 }
       );
-      fadeElems.forEach((el) => observer.observe(el));
+      fadeEls.forEach(el => observer.observe(el));
     </script>
   </body>
 </html>
