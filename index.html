@@ -25,42 +25,60 @@
       header {
         background-color: white;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 1rem 2rem;
       }
       nav {
-        max-width: 7xl;
+        max-width: 1200px;
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 1rem 2rem;
       }
-      nav a {
-        color: var(--orange);
+      /* Style pour les boutons de navigation type "dynamique Island" */
+      .nav-item {
+        background-color: var(--bg);
+        border: 2px solid var(--orange);
+        border-radius: 50px;
+        padding: 0.5rem 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s ease;
         text-decoration: none;
-        margin: 0 0.5rem;
+        color: var(--orange);
         font-weight: bold;
       }
-      nav a:hover,
-      nav a:focus {
-        color: var(--orange-light);
+      .nav-item:hover,
+      .nav-item:focus {
+        background-color: var(--orange-light);
       }
-      /* Nouvelle règle pour un style d'icônes arrondi à la Google */
-      .icon-rounded {
-        background-color: #fff;
-        border-radius: 50%;
-        padding: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+      /* Sur mobile, adopter le style "rond" pour n'afficher que les icônes */
+      @media (max-width: 767px) {
+        .nav-item {
+          border-radius: 50%;
+          padding: 0.5rem;
+          justify-content: center;
+          width: 48px;
+          height: 48px;
+          gap: 0;
+        }
+        .nav-text {
+          display: none;
+        }
       }
+      @media (min-width: 768px) {
+        .nav-text {
+          display: inline;
+        }
+      }
+      /* Carrousel */
       .carousel-wrapper {
         max-width: 1000px;
         margin: 2rem auto 0;
         overflow: hidden;
         border-radius: 1rem;
         background: white;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         position: relative;
       }
       .carousel-track {
@@ -90,15 +108,21 @@
         content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient(to top, rgba(0,0,0,0.2), transparent);
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.2), transparent);
       }
       .carousel-slide.active {
         animation: bounce 0.4s ease;
       }
       @keyframes bounce {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.03); }
-        100% { transform: scale(1); }
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.03);
+        }
+        100% {
+          transform: scale(1);
+        }
       }
       .carousel-fade-right {
         position: absolute;
@@ -147,19 +171,19 @@
   <body class="text-gray-800">
     <header role="banner">
       <nav aria-label="Navigation principale">
-        <a href="#" class="text-lg">KetSiho</a>
-        <div>
-          <a href="#choisir">
-            <i class="fas fa-star icon-rounded"></i>
-            <span>Pourquoi nous choisir</span>
+        <a href="#" class="text-lg" style="color: var(--orange); font-weight: bold;">KetSiho</a>
+        <div class="flex gap-3">
+          <a href="#choisir" class="nav-item">
+            <i class="fas fa-star"></i>
+            <span class="nav-text">Pourquoi nous choisir</span>
           </a>
-          <a href="#fonctionnement">
-            <i class="fas fa-cogs icon-rounded"></i>
-            <span>Fonctionnement</span>
+          <a href="#fonctionnement" class="nav-item">
+            <i class="fas fa-cogs"></i>
+            <span class="nav-text">Fonctionnement</span>
           </a>
-          <a href="#contact">
-            <i class="fas fa-envelope icon-rounded"></i>
-            <span>Contact</span>
+          <a href="#contact" class="nav-item">
+            <i class="fas fa-envelope"></i>
+            <span class="nav-text">Contact</span>
           </a>
         </div>
       </nav>
@@ -181,29 +205,29 @@
       <section id="choisir" class="max-w-6xl mx-auto px-4 py-16 fade-in">
         <h2 class="text-3xl font-bold text-center text-orange-600 mb-10">Pourquoi nous choisir ?</h2>
         <div class="grid md:grid-cols-2 gap-8">
-          <article class="flex items-start gap-4">
-            <i class="fas fa-shield-alt icon-rounded text-3xl text-orange-500"></i>
+          <article class="flex items-center gap-4">
+            <i class="fas fa-shield-alt text-3xl text-orange-500"></i>
             <div>
               <h3 class="text-xl font-semibold">Fiabilité &amp; Sécurité</h3>
               <p>Transport sécurisé et suivi rigoureux pour chaque envoi.</p>
             </div>
           </article>
-          <article class="flex items-start gap-4">
-            <i class="fas fa-shipping-fast icon-rounded text-3xl text-orange-500"></i>
+          <article class="flex items-center gap-4">
+            <i class="fas fa-shipping-fast text-3xl text-orange-500"></i>
             <div>
               <h3 class="text-xl font-semibold">Rapidité</h3>
               <p>Des délais courts pour une livraison rapide et efficace.</p>
             </div>
           </article>
-          <article class="flex items-start gap-4">
-            <i class="fas fa-user-check icon-rounded text-3xl text-orange-500"></i>
+          <article class="flex items-center gap-4">
+            <i class="fas fa-user-check text-3xl text-orange-500"></i>
             <div>
               <h3 class="text-xl font-semibold">Service personnalisé</h3>
               <p>Nous adaptons nos solutions à chaque besoin spécifique.</p>
             </div>
           </article>
-          <article class="flex items-start gap-4">
-            <i class="fas fa-headset icon-rounded text-3xl text-orange-500"></i>
+          <article class="flex items-center gap-4">
+            <i class="fas fa-headset text-3xl text-orange-500"></i>
             <div>
               <h3 class="text-xl font-semibold">Support humain</h3>
               <p>Une assistance client disponible et à votre écoute 7j/7.</p>
@@ -217,15 +241,23 @@
       const slides = track.querySelectorAll('.carousel-slide');
       const dots = document.querySelectorAll('.dot');
       let currentIndex = 0;
+      
       function getSlideWidth() {
         return slides[0].getBoundingClientRect().width + 16;
       }
+      
       function updateDots(index) {
-        dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === index);
+        });
       }
+      
       function highlightSlide(index) {
-        slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === index);
+        });
       }
+      
       function goToSlide(index) {
         currentIndex = index;
         const slideWidth = getSlideWidth();
@@ -233,19 +265,24 @@
         updateDots(index);
         highlightSlide(index);
       }
+      
       function autoScroll() {
         currentIndex = (currentIndex + 1) % slides.length;
         goToSlide(currentIndex);
       }
-      dots.forEach(dot =>
+      
+      dots.forEach(dot => {
         dot.addEventListener('click', () => {
           const index = parseInt(dot.getAttribute('data-index'));
           goToSlide(index);
-        })
-      );
+        });
+      });
+      
       let interval = setInterval(autoScroll, 5000);
+      
       track.addEventListener('touchstart', () => clearInterval(interval));
       track.addEventListener('touchend', () => (interval = setInterval(autoScroll, 5000)));
+      
       track.addEventListener('scroll', () => {
         const slideWidth = getSlideWidth();
         const scrollPos = track.scrollLeft;
@@ -254,9 +291,10 @@
         updateDots(index);
         highlightSlide(index);
       });
+      
       const fadeEls = document.querySelectorAll('.fade-in');
       const observer = new IntersectionObserver(
-        entries => entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible')),
+        (entries) => entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible')),
         { threshold: 0.1 }
       );
       fadeEls.forEach(el => observer.observe(el));
