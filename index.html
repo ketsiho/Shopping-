@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KetSiho Shipping - Vitrine</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" 
     />
     <style>
       :root {
         --orange: #f97316;
         --orange-light: #fcd9b1;
         --bg: #fffaf3;
+        --contact-bg: rgba(255, 255, 255, 0.8);
       }
       body {
         font-family: 'Inter', sans-serif;
@@ -24,7 +25,7 @@
       }
       header {
         background-color: white;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         padding: 1rem 2rem;
       }
       nav {
@@ -34,7 +35,6 @@
         justify-content: space-between;
         align-items: center;
       }
-      /* Style pour les boutons de navigation type "dynamique Island" */
       .nav-item {
         background-color: var(--bg);
         border: 2px solid var(--orange);
@@ -52,7 +52,6 @@
       .nav-item:focus {
         background-color: var(--orange-light);
       }
-      /* Sur mobile, adopter le style "rond" pour n'afficher que les icônes */
       @media (max-width: 767px) {
         .nav-item {
           border-radius: 50%;
@@ -71,14 +70,14 @@
           display: inline;
         }
       }
-      /* Carrousel */
+      /* Carousel Section */
       .carousel-wrapper {
         max-width: 1000px;
         margin: 2rem auto 0;
         overflow: hidden;
         border-radius: 1rem;
         background: white;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         position: relative;
       }
       .carousel-track {
@@ -108,21 +107,15 @@
         content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.2), transparent);
+        background: linear-gradient(to top, rgba(0,0,0,0.2), transparent);
       }
       .carousel-slide.active {
         animation: bounce 0.4s ease;
       }
       @keyframes bounce {
-        0% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.03);
-        }
-        100% {
-          transform: scale(1);
-        }
+        0% { transform: scale(1); }
+        50% { transform: scale(1.03); }
+        100% { transform: scale(1); }
       }
       .carousel-fade-right {
         position: absolute;
@@ -166,6 +159,61 @@
         opacity: 1;
         transform: translateY(0);
       }
+      /* Box structure for "Informations importantes du Sud" */
+      .info-box {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 1.5rem;
+        background-color: #ffffff;
+        border: 2px solid var(--orange);
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      }
+      .info-box h3 {
+        margin-top: 0;
+        color: var(--orange);
+      }
+      /* Contact Section at the bottom with WhatsApp & Mail buttons */
+      #contact {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 1.5rem;
+        background-color: var(--contact-bg);
+        border: 2px solid var(--orange);
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        backdrop-filter: blur(4px);
+      }
+      #contact h3 {
+        margin-top: 0;
+        color: var(--orange);
+      }
+      .contact-buttons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      .contact-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        border: 2px solid var(--orange);
+        border-radius: 10px;
+        background-color: var(--contact-bg);
+        color: var(--orange);
+        text-decoration: none;
+        font-weight: bold;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+      }
+      .contact-btn i {
+        margin-right: 0.5rem;
+      }
+      .contact-btn:hover {
+        background-color: var(--orange-light);
+        transform: scale(1.05);
+      }
     </style>
   </head>
   <body class="text-gray-800">
@@ -189,6 +237,7 @@
       </nav>
     </header>
     <main>
+      <!-- Section: Carrousel -->
       <section class="carousel-wrapper" aria-label="Carrousel d'images">
         <div class="carousel-track" id="carousel-track">
           <div class="carousel-slide" style="background-image: url('https://placehold.co/800x400/f97316/fff?text=1');" role="img" aria-label="Image 1"></div>
@@ -202,6 +251,7 @@
         <span class="dot" data-index="1" aria-label="Aller à l'image 2"></span>
         <span class="dot" data-index="2" aria-label="Aller à l'image 3"></span>
       </div>
+      <!-- Section: Pourquoi nous choisir -->
       <section id="choisir" class="max-w-6xl mx-auto px-4 py-16 fade-in">
         <h2 class="text-3xl font-bold text-center text-orange-600 mb-10">Pourquoi nous choisir ?</h2>
         <div class="grid md:grid-cols-2 gap-8">
@@ -233,6 +283,48 @@
               <p>Une assistance client disponible et à votre écoute 7j/7.</p>
             </div>
           </article>
+        </div>
+      </section>
+      <!-- Section: Informations importantes du Sud -->
+      <section class="info-box fade-in">
+        <h3 class="text-2xl font-bold mb-4">Informations importantes du Sud</h3>
+        <p>
+          Voici les informations essentielles concernant la région du Sud. 
+          Nous simplifions vos achats et garantissons une expédition rapide et fiable.
+        </p>
+        <p>
+          <strong>Numéro d'appel affiché :</strong> 05 65 97 82 00<br/>
+          <strong>Lien cliquable (tel):</strong> +2250799453981<br/>
+          <strong>WhatsApp direct (script):</strong> +2250565978200
+        </p>
+        <p>
+          <strong>Expédition et livraison :</strong> Envoi vers la Côte d’Ivoire avec suivi, remise en main propre ou point relais.
+        </p>
+        <p>
+          <strong>Mission :</strong> Simplifier vos achats en Chine et garantir une expédition rapide, fiable et sécurisée jusqu’à votre porte en Côte d’Ivoire.
+        </p>
+        <p>
+          <strong>Avantage "Rapidité" :</strong> Des délais maîtrisés, respectés et annoncés dès la commande.
+        </p>
+        <p>
+          <strong>Service complémentaire :</strong> Suivi de colis — En temps réel.
+        </p>
+      </section>
+      <!-- Section: Contact (placée en bas) avec boutons WhatsApp et Email -->
+      <section id="contact" class="fade-in">
+        <h3 class="text-2xl font-bold mb-4">Contactez-nous</h3>
+        <p>
+          Pour toute question, demande ou complément d'information, contactez-nous via WhatsApp ou par email.
+        </p>
+        <div class="contact-buttons">
+          <a href="https://wa.me/2250565978200" target="_blank" class="contact-btn">
+            <i class="fab fa-whatsapp"></i>
+            WhatsApp
+          </a>
+          <a href="mailto:contact@ketsiho.com" class="contact-btn">
+            <i class="fas fa-envelope"></i>
+            Email
+          </a>
         </div>
       </section>
     </main>
