@@ -24,7 +24,7 @@
       }
       header {
         background-color: white;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
       nav {
         max-width: 7xl;
@@ -43,6 +43,16 @@
       nav a:hover,
       nav a:focus {
         color: var(--orange-light);
+      }
+      /* Nouvelle règle pour un style d'icônes arrondi à la Google */
+      .icon-rounded {
+        background-color: #fff;
+        border-radius: 50%;
+        padding: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
       }
       .carousel-wrapper {
         max-width: 1000px;
@@ -140,15 +150,15 @@
         <a href="#" class="text-lg">KetSiho</a>
         <div>
           <a href="#choisir">
-            <i class="fas fa-star"></i>
+            <i class="fas fa-star icon-rounded"></i>
             <span>Pourquoi nous choisir</span>
           </a>
           <a href="#fonctionnement">
-            <i class="fas fa-cogs"></i>
+            <i class="fas fa-cogs icon-rounded"></i>
             <span>Fonctionnement</span>
           </a>
           <a href="#contact">
-            <i class="fas fa-envelope"></i>
+            <i class="fas fa-envelope icon-rounded"></i>
             <span>Contact</span>
           </a>
         </div>
@@ -172,28 +182,28 @@
         <h2 class="text-3xl font-bold text-center text-orange-600 mb-10">Pourquoi nous choisir ?</h2>
         <div class="grid md:grid-cols-2 gap-8">
           <article class="flex items-start gap-4">
-            <i class="fas fa-shield-alt text-3xl text-orange-500"></i>
+            <i class="fas fa-shield-alt icon-rounded text-3xl text-orange-500"></i>
             <div>
               <h3 class="text-xl font-semibold">Fiabilité &amp; Sécurité</h3>
               <p>Transport sécurisé et suivi rigoureux pour chaque envoi.</p>
             </div>
           </article>
           <article class="flex items-start gap-4">
-            <i class="fas fa-shipping-fast text-3xl text-orange-500"></i>
+            <i class="fas fa-shipping-fast icon-rounded text-3xl text-orange-500"></i>
             <div>
               <h3 class="text-xl font-semibold">Rapidité</h3>
               <p>Des délais courts pour une livraison rapide et efficace.</p>
             </div>
           </article>
           <article class="flex items-start gap-4">
-            <i class="fas fa-user-check text-3xl text-orange-500"></i>
+            <i class="fas fa-user-check icon-rounded text-3xl text-orange-500"></i>
             <div>
               <h3 class="text-xl font-semibold">Service personnalisé</h3>
               <p>Nous adaptons nos solutions à chaque besoin spécifique.</p>
             </div>
           </article>
           <article class="flex items-start gap-4">
-            <i class="fas fa-headset text-3xl text-orange-500"></i>
+            <i class="fas fa-headset icon-rounded text-3xl text-orange-500"></i>
             <div>
               <h3 class="text-xl font-semibold">Support humain</h3>
               <p>Une assistance client disponible et à votre écoute 7j/7.</p>
@@ -252,5 +262,4 @@
       fadeEls.forEach(el => observer.observe(el));
     </script>
   </body>
-</html></body>
 </html>
