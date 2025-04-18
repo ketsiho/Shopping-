@@ -143,6 +143,41 @@
     <span class="dot" data-index="2"></span>
   </div>
 
+  <!-- Pourquoi nous choisir -->
+  <section id="choisir" class="max-w-6xl mx-auto px-4 py-16 fade-in">
+    <h2 class="text-3xl font-bold text-center text-orange-600 mb-10">Pourquoi nous choisir ?</h2>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="flex items-start gap-4">
+        <i class="fas fa-shield-alt text-3xl text-orange-500"></i>
+        <div>
+          <h3 class="text-xl font-semibold">Fiabilité & Sécurité</h3>
+          <p>Transport sécurisé et suivi rigoureux pour chaque envoi.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-4">
+        <i class="fas fa-shipping-fast text-3xl text-orange-500"></i>
+        <div>
+          <h3 class="text-xl font-semibold">Rapidité</h3>
+          <p>Des délais courts pour une livraison rapide et efficace.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-4">
+        <i class="fas fa-user-check text-3xl text-orange-500"></i>
+        <div>
+          <h3 class="text-xl font-semibold">Service personnalisé</h3>
+          <p>Nous adaptons nos solutions à chaque besoin spécifique.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-4">
+        <i class="fas fa-headset text-3xl text-orange-500"></i>
+        <div>
+          <h3 class="text-xl font-semibold">Support humain</h3>
+          <p>Une assistance client disponible et à votre écoute 7j/7.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <script>
     const track = document.getElementById('carousel-track');
     const slides = track.querySelectorAll('.carousel-slide');
@@ -202,7 +237,6 @@
       highlightSlide(index);
     });
 
-    // Fade-in animation au scroll
     const fadeEls = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
