@@ -7,200 +7,191 @@
   <style>
     :root {
       --orange: #FF8500;
-      --orange-dark: #e26f00;
-      --secondary: #2d2e32;
-      --background: #fff7ed;
-      --gray: #f7f6f9;
+      --orange-dark: #E26F00;
+      --gray: #f7f7fb;
+      --text: #2d2e32;
+      --secondary: #fff;
     }
     body {
-      margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: var(--background); color: var(--secondary);
+      margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: var(--gray); color: var(--text);
     }
-    /* Navbar */
     header {
-      background: #fff;
+      background: var(--secondary);
       box-shadow: 0 2px 16px #0001;
       position: sticky; top: 0; z-index: 100;
-      border-radius: 0 0 22px 22px;
+      border-radius: 0 0 18px 18px;
     }
-    .container { max-width: 1200px; margin: auto; padding: 0 16px;}
-    .navbar-flex {
-      display:flex;align-items:center;justify-content:space-between; padding:12px 0;
+    .container { max-width: 1040px; margin: auto; padding: 0 18px;}
+    .navbar {
+      display:flex; align-items:center; justify-content:space-between; padding:14px 0;
     }
     .logo {
-      color: var(--orange);
-      font-weight: bold;
-      font-size: 1.5rem;
-      letter-spacing: 1.5px;
+      color: var(--orange); font-weight: bold; font-size: 1.6rem; letter-spacing: 1.5px;
     }
-    nav {
-      display: flex; gap: 18px; justify-content: flex-end;
-    }
+    .nav-btns {display: flex; gap: 10px;}
     .nav-btn {
-      background: var(--orange);
-      color: #fff;
-      border:none;
-      border-radius: 50px;
-      padding: 10px 24px;
-      font-size: 1rem;
-      font-weight: 500;
-      cursor:pointer;
-      transition: background 0.18s, box-shadow 0.18s, transform 0.14s;
-      box-shadow: 0 2px 10px #ff850020;
-      outline: none;
-      display: flex; align-items: center; gap: 7px;
-      margin-bottom: 4px;
+      background: none; color: var(--orange); border:none; border-radius: 30px;
+      padding: 8px 20px; font-size: 1rem; font-weight: 500; cursor:pointer;
+      transition: background 0.14s, color 0.14s;
     }
-    .nav-btn:hover, .nav-btn.active {
-      background: var(--orange-dark);
-      box-shadow: 0 4px 20px #ff850055;
-      transform: translateY(-2px) scale(1.06);
-    }
-    /* Hero */
+    .nav-btn:hover, .nav-btn.active {background: var(--orange); color: #fff;}
+    /* HERO */
     .hero {
-      text-align: center; padding: 80px 10px 40px 10px;
-      background: linear-gradient(135deg,#ffd9b3 30%,#fff 100%);
+      text-align: center; padding: 82px 10px 54px 10px;
+      background: linear-gradient(125deg,#ffe2c1 50%, #fff 100%);
+      border-radius: 0 0 32px 32px;
+      margin-bottom: 42px;
     }
-    .hero h2 {font-size: 2.7rem; margin-bottom: 14px; color: var(--orange);}
-    .hero p {color: #555; font-size: 1.18rem; margin-bottom: 24px;}
+    .hero h1 {
+      font-size: 2.4rem; margin-bottom: 18px; color: var(--orange);
+      font-weight: bold;
+    }
+    .hero p {color: #333; font-size: 1.13rem; margin-bottom: 25px;}
     .cta-btn {
-      background: var(--orange); color: #fff; padding: 13px 38px; border-radius: 40px;
-      font-size: 1.08rem; border: none; cursor: pointer; box-shadow: 0 4px 24px #ff850022;
-      transition: background 0.2s,transform 0.2s;
-      margin-top: 8px;
+      background: var(--orange); color: #fff; padding: 13px 36px; border-radius: 28px;
+      font-size: 1.1rem; border: none; cursor: pointer; box-shadow: 0 2px 12px #ff850022;
+      transition: background 0.15s,transform 0.15s;
+      margin-top: 8px; font-weight: 500;
     }
-    .cta-btn:hover {background: var(--orange-dark); transform: scale(1.05);}
-    /* Services */
+    .cta-btn:hover {background: var(--orange-dark);}
+    /* SERVICES */
+    .services-section {margin: 58px 0;}
+    .services-title {text-align: center; color: var(--orange); font-size: 1.5rem; margin-bottom: 32px;}
     .services {
-      display: grid; grid-template-columns: repeat(auto-fit,minmax(230px,1fr)); gap: 28px; margin: 60px 0;
+      display: grid; grid-template-columns: repeat(auto-fit,minmax(230px,1fr)); gap: 30px;
     }
-    .service-card {
-      background: #fff; border-radius: 28px; box-shadow: 0 4px 32px #ff850015;
-      padding: 36px 20px; text-align: center; transition: transform 0.2s, box-shadow 0.2s;
-      border-bottom: 4px solid var(--orange);
+    .service {
+      background: #fff; border-radius: 20px; box-shadow: 0 4px 28px #ff850018;
+      padding: 32px 18px; text-align: center; transition: transform 0.2s, box-shadow 0.2s;
+      border-bottom: 3px solid var(--orange);
+      display: flex; flex-direction: column; align-items: center; min-height: 180px;
     }
-    .service-card:hover {transform: translateY(-8px) scale(1.04); box-shadow: 0 8px 48px #ff850022;}
-    .service-emoji {
-      font-size: 2.2rem; margin-bottom: 10px; background: var(--orange); color: #fff; border-radius: 50%;
-      width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; margin: 0 auto 13px auto; box-shadow: 0 2px 12px #ff850022;
+    .service-icon {
+      font-size: 2rem; background: var(--orange); color: #fff;
+      border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
     }
-    .service-title {color: var(--orange); font-weight: bold; margin-bottom: 6px; font-size: 1.1rem;}
-    /* Galerie Scroll */
-    .gallery-section {background: #fff7ed; padding: 50px 0;}
-    .gallery-title {text-align: center; color: var(--orange); font-size: 2.1rem; margin-bottom: 30px;}
+    .service-title {color: var(--orange); font-weight: bold; margin-bottom: 5px; font-size: 1.08rem;}
+    .service-desc {font-size: 1rem; color: #444;}
+    /* GALLERY */
+    .gallery-section {background: #fffbe9; padding: 44px 0;}
+    .gallery-title {text-align: center; color: var(--orange); font-size: 1.4rem; margin-bottom: 20px;}
     .gallery-scroll {
-      display: flex; gap: 28px; overflow-x: auto; padding: 16px 0 20px 16px; scrollbar-width: thin; scrollbar-color: var(--orange) #ffd9b3;
+      display: flex; gap: 22px; overflow-x: auto; padding: 10px 0 15px 12px; scrollbar-width: thin; scrollbar-color: var(--orange) #ffd9b3;
+      margin-bottom: 8px;
     }
-    .gallery-scroll::-webkit-scrollbar {height: 10px;}
-    .gallery-scroll::-webkit-scrollbar-thumb {background: var(--orange); border-radius: 10px;}
     .gallery-img-card {
-      min-width: 340px; max-width: 380px; border-radius: 28px; overflow: hidden; box-shadow: 0 4px 36px #ff850021;
+      min-width: 270px; max-width: 300px; border-radius: 20px; overflow: hidden; box-shadow: 0 2px 16px #ff850011;
       background: #fff; position: relative; transition: transform 0.2s, box-shadow 0.2s;
+      flex-shrink: 0;
     }
-    .gallery-img-card:hover {transform: scale(1.05) rotate(-1deg); box-shadow: 0 12px 48px #ff850033;}
-    .gallery-img-card img {width: 100%; height: 220px; object-fit: cover;}
+    .gallery-img-card:hover {transform: scale(1.04) rotate(-1deg); box-shadow: 0 6px 30px #ff850025;}
+    .gallery-img-card img {width: 100%; height: 160px; object-fit: cover;}
     .gallery-img-card .label {
       position: absolute; bottom: 0; left: 0; right: 0;
       background: linear-gradient(0deg,#ff850099 70%,transparent 100%);
-      color: #fff; padding: 14px 20px; font-weight: 500;
+      color: #fff; padding: 9px 14px; font-weight: 500;
+      font-size: 1rem;
     }
     /* FAQ */
-    .faq-section {max-width: 800px; margin: 50px auto;}
-    .faq-title {text-align: center; color: var(--orange); font-size: 2rem; margin-bottom: 20px;}
-    details {background: #fff; border-radius: 18px; box-shadow: 0 2px 16px #ff850011; margin: 12px 0; padding: 18px 18px;}
-    summary {cursor: pointer; color: var(--orange);font-weight: 500; font-size: 1.08rem;}
-    /* Contact */
-    .contact-section {background: linear-gradient(135deg,#ffd9b3 30%,#fff 100%); padding: 60px 0;}
-    .contact-title {text-align: center; color: var(--orange); font-size: 2rem; margin-bottom: 18px;}
-    .contact-form {max-width: 420px; margin: auto; background: #fff; border-radius: 22px; box-shadow: 0 6px 32px #ff850022; padding: 36px 26px; display: flex; flex-direction: column; gap: 16px;}
-    .contact-form input,.contact-form textarea {font-size: 1rem; padding: 12px; border:1px solid #ffd9b3; border-radius: 8px;}
-    .contact-form button {background: var(--orange); color: #fff; border: none; border-radius: 20px; padding: 12px; font-size: 1rem; cursor:pointer;}
+    .faq-section {max-width: 600px; margin: 40px auto;}
+    .faq-title {text-align: center; color: var(--orange); font-size: 1.2rem; margin-bottom: 14px;}
+    details {background: #fff; border-radius: 14px; box-shadow: 0 2px 10px #ff850011; margin: 10px 0; padding: 13px 14px;}
+    summary {cursor: pointer; color: var(--orange);font-weight: 500; font-size: 1.03rem;}
+    /* CONTACT */
+    .contact-section {background: linear-gradient(125deg,#ffe2c1 50%, #fff 100%); padding: 46px 0;}
+    .contact-title {text-align: center; color: var(--orange); font-size: 1.35rem; margin-bottom: 13px;}
+    .contact-form {max-width: 340px; margin: auto; background: #fff; border-radius: 16px; box-shadow: 0 4px 22px #ff850022; padding: 26px 18px; display: flex; flex-direction: column; gap: 13px;}
+    .contact-form input,.contact-form textarea {font-size: 1rem; padding: 9px; border:1px solid #ffd9b3; border-radius: 7px;}
+    .contact-form button {background: var(--orange); color: #fff; border: none; border-radius: 18px; padding: 10px; font-size: 1rem; cursor:pointer;}
     .contact-form button:hover {background: var(--orange-dark);}
     /* Footer */
-    footer {background: #fff; color: #888; text-align: center; font-size: 1rem; padding: 26px 0 10px 0; margin-top: 60px;}
+    footer {background: #fff; color: #888; text-align: center; font-size: 1rem; padding: 18px 0 8px 0; margin-top: 38px;}
     /* Responsive */
     @media (max-width:700px){
-      .gallery-img-card{min-width: 90vw;}
+      .gallery-img-card{min-width: 78vw;}
       .services{grid-template-columns: 1fr;}
-      .hero h2{font-size: 1.4rem;}
-      .navbar-flex {flex-direction:column;gap:8px;}
-      .nav-btn {font-size: 0.97rem; padding: 8px 18px;}
+      .hero h1{font-size: 1.2rem;}
+      .navbar {flex-direction:column;gap:7px;}
+      .nav-btn {font-size: 0.97rem; padding: 8px 14px;}
     }
   </style>
 </head>
 <body>
+  <!-- NAVBAR -->
   <header>
-    <div class="container navbar-flex">
+    <div class="container navbar">
       <div class="logo">KetSiho Shipping</div>
-      <nav>
-        <a href="#hero" class="nav-btn active">🏠 Accueil</a>
-        <a href="#services" class="nav-btn">🛠️ Services</a>
-        <a href="#gallery" class="nav-btn">🖼️ Galerie</a>
-        <a href="#faq" class="nav-btn">❓ FAQ</a>
-        <a href="#contact" class="nav-btn">✉️ Contact</a>
-      </nav>
+      <div class="nav-btns">
+        <a href="#hero" class="nav-btn active">Accueil</a>
+        <a href="#services" class="nav-btn">Services</a>
+        <a href="#gallery" class="nav-btn">Galerie</a>
+        <a href="#faq" class="nav-btn">FAQ</a>
+        <a href="#contact" class="nav-btn">Contact</a>
+      </div>
     </div>
   </header>
 
+  <!-- HERO -->
   <section class="hero" id="hero">
-    <h2>Importez facilement de la Chine vers la Côte d’Ivoire</h2>
-    <p>KetSiho Shipping simplifie vos importations : rapidité, sécurité et accompagnement de A à Z.</p>
+    <h1>Simplifiez vos importations de la Chine vers la Côte d’Ivoire</h1>
+    <p>Service rapide, sécurisé et accessible pour commerçants, entreprises et particuliers.</p>
     <a href="#contact"><button class="cta-btn">Contactez-nous</button></a>
   </section>
 
-  <section class="container" id="services">
-    <div class="services">
-      <div class="service-card">
-        <div class="service-emoji">📦</div>
+  <!-- SERVICES -->
+  <section class="services-section" id="services">
+    <div class="services-title">Nos points forts</div>
+    <div class="container services">
+      <div class="service">
+        <div class="service-icon">📦</div>
         <div class="service-title">Réception</div>
-        <div>Nous réceptionnons vos commandes dans nos entrepôts en Chine.</div>
+        <div class="service-desc">Vos commandes reçues dans nos entrepôts partenaires en Chine.</div>
       </div>
-      <div class="service-card">
-        <div class="service-emoji">🤝</div>
+      <div class="service">
+        <div class="service-icon">🤝</div>
         <div class="service-title">Groupage</div>
-        <div>Vos colis sont regroupés avec d'autres pour réduire les coûts.</div>
+        <div class="service-desc">Réduction des coûts grâce au groupage de colis.</div>
       </div>
-      <div class="service-card">
-        <div class="service-emoji">🚚</div>
+      <div class="service">
+        <div class="service-icon">🚚</div>
         <div class="service-title">Expédition</div>
-        <div>Envoi par avion ou bateau, suivi régulier.</div>
+        <div class="service-desc">Envoi sécurisé par avion ou bateau, suivi en temps réel.</div>
       </div>
-      <div class="service-card">
-        <div class="service-emoji">🏠</div>
+      <div class="service">
+        <div class="service-icon">🏠</div>
         <div class="service-title">Livraison</div>
-        <div>Livraison à Abidjan ou dans votre ville, à domicile ou en point relais.</div>
+        <div class="service-desc">Livraison à Abidjan ou dans votre ville, à domicile ou en point relais.</div>
       </div>
     </div>
   </section>
 
+  <!-- GALERIE -->
   <section class="gallery-section" id="gallery">
-    <div class="gallery-title">Galerie de nos services</div>
+    <div class="gallery-title">Un aperçu en images</div>
     <div class="gallery-scroll">
-      <!-- Remplace les src par tes propres images dans un dossier images/ -->
       <div class="gallery-img-card">
-        <img src="images/image1.jpg" alt="Service 1"/>
+        <img src="images/image1.jpg" alt="Réception en Chine"/>
         <div class="label">Réception en Chine</div>
       </div>
       <div class="gallery-img-card">
-        <img src="images/image2.jpg" alt="Service 2"/>
-        <div class="label">Groupage & Optimisation</div>
+        <img src="images/image2.jpg" alt="Groupage"/>
+        <div class="label">Groupage</div>
       </div>
       <div class="gallery-img-card">
-        <img src="images/image3.jpg" alt="Service 3"/>
-        <div class="label">Expédition sécurisée</div>
+        <img src="images/image3.jpg" alt="Expédition"/>
+        <div class="label">Expédition</div>
       </div>
       <div class="gallery-img-card">
-        <img src="images/image4.jpg" alt="Service 4"/>
-        <div class="label">Livraison rapide</div>
-      </div>
-      <div class="gallery-img-card">
-        <img src="images/image5.jpg" alt="Service 5"/>
-        <div class="label">Clients satisfaits</div>
+        <img src="images/image4.jpg" alt="Livraison"/>
+        <div class="label">Livraison</div>
       </div>
     </div>
   </section>
 
+  <!-- FAQ -->
   <section class="faq-section" id="faq">
-    <div class="faq-title">Foire aux questions</div>
+    <div class="faq-title">Questions fréquentes</div>
     <details open>
       <summary>Comment envoyer mes colis ?</summary>
       <div>Indiquez à votre fournisseur l’adresse de notre entrepôt en Chine. Nous prenons le relais dès la réception.</div>
@@ -213,16 +204,9 @@
       <summary>Quels sont les délais de livraison ?</summary>
       <div>Par avion : 10 à 15 jours ouvrés. Par bateau : 30 à 40 jours selon la période.</div>
     </details>
-    <details>
-      <summary>Où récupérer mon colis ?</summary>
-      <div>Livraison à domicile ou en point relais dans votre ville.</div>
-    </details>
-    <details>
-      <summary>Que faire en cas de souci ?</summary>
-      <div>Notre service client est disponible pour vous accompagner et résoudre toute difficulté.</div>
-    </details>
   </section>
 
+  <!-- CONTACT -->
   <section class="contact-section" id="contact">
     <div class="contact-title">Contactez-nous</div>
     <form class="contact-form" onsubmit="event.preventDefault();alert('Message envoyé ! (À relier à un backend ou email)');">
