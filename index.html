@@ -3,12 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KetSiho Shipping - Vitrine</title>
+    <title>KetSiho Shipping - Informations essentielles</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link 
-      rel="stylesheet" 
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" 
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <style>
       :root {
         --orange: #f97316;
@@ -24,7 +21,7 @@
         overflow-x: hidden;
       }
       header {
-        background-color: white;
+        background-color: #ffffff;
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         padding: 1rem 2rem;
       }
@@ -52,6 +49,7 @@
       .nav-item:focus {
         background-color: var(--orange-light);
       }
+      /* Adaptation mobile : icônes uniquement en rond */
       @media (max-width: 767px) {
         .nav-item {
           border-radius: 50%;
@@ -70,97 +68,15 @@
           display: inline;
         }
       }
-      /* Carousel Section */
-      .carousel-wrapper {
-        max-width: 1000px;
-        margin: 2rem auto 0;
-        overflow: hidden;
-        border-radius: 1rem;
-        background: white;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        position: relative;
+      .section-title {
+        color: var(--orange);
+        text-align: center;
       }
-      .carousel-track {
-        display: flex;
-        overflow-x: auto;
-        scroll-behavior: smooth;
-        scroll-snap-type: x mandatory;
-        scrollbar-width: none;
+      .section-title i {
+        margin-right: 0.5rem;
       }
-      .carousel-track::-webkit-scrollbar {
-        display: none;
-      }
-      .carousel-slide {
-        flex: 0 0 auto;
-        width: 85vw;
-        max-width: 1000px;
-        aspect-ratio: 16 / 9;
-        margin: 1rem 0.5rem;
-        border-radius: 1rem;
-        background-size: cover;
-        background-position: center;
-        scroll-snap-align: start;
-        position: relative;
-        transition: transform 0.3s;
-      }
-      .carousel-slide::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to top, rgba(0,0,0,0.2), transparent);
-      }
-      .carousel-slide.active {
-        animation: bounce 0.4s ease;
-      }
-      @keyframes bounce {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.03); }
-        100% { transform: scale(1); }
-      }
-      .carousel-fade-right {
-        position: absolute;
-        right: 0;
-        top: 0;
-        height: 100%;
-        width: 60px;
-        background: linear-gradient(to left, var(--bg), transparent);
-        z-index: 5;
-        pointer-events: none;
-      }
-      .carousel-dots {
-        display: none;
-      }
-      @media (min-width: 768px) {
-        .carousel-dots {
-          display: flex;
-          justify-content: center;
-          gap: 0.5rem;
-          margin-top: 1rem;
-          margin-bottom: 2rem;
-        }
-        .dot {
-          width: 12px;
-          height: 12px;
-          border-radius: 9999px;
-          background-color: var(--orange-light);
-          transition: background-color 0.3s;
-          cursor: pointer;
-        }
-        .dot.active {
-          background-color: var(--orange);
-        }
-      }
-      .fade-in {
-        opacity: 0;
-        transform: translateY(40px);
-        transition: all 0.6s ease-in-out;
-      }
-      .fade-in.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      /* Box structure for "Informations importantes du Sud" */
-      .info-box {
+      /* Section de la livraison et expédition */
+      .delivery-section {
         max-width: 800px;
         margin: 2rem auto;
         padding: 1.5rem;
@@ -169,11 +85,23 @@
         border-radius: 10px;
         box-shadow: 0 4px 20px rgba(0,0,0,0.1);
       }
-      .info-box h3 {
+      .delivery-section h3 {
         margin-top: 0;
         color: var(--orange);
+        font-size: 1.75rem;
       }
-      /* Contact Section at the bottom with WhatsApp & Mail buttons */
+      .delivery-info {
+        margin-top: 1rem;
+        line-height: 1.6;
+      }
+      .delivery-info p {
+        margin: 0.5rem 0;
+      }
+      .info-icon {
+        color: var(--orange);
+        margin-right: 0.5rem;
+      }
+      /* Contact Section en bas, style inspiré d'un bouton WhatsApp et email */
       #contact {
         max-width: 800px;
         margin: 2rem auto;
@@ -187,14 +115,18 @@
       #contact h3 {
         margin-top: 0;
         color: var(--orange);
+        font-size: 1.75rem;
+      }
+      .contact-desc {
+        margin-bottom: 1rem;
       }
       .contact-buttons {
         display: flex;
+        flex-wrap: wrap;
         gap: 1rem;
-        margin-top: 1rem;
       }
       .contact-btn {
-        flex: 1;
+        flex: 1 1 200px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -214,11 +146,21 @@
         background-color: var(--orange-light);
         transform: scale(1.05);
       }
+      /* Animation d'apparition */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.6s ease-in-out;
+      }
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
     </style>
   </head>
   <body class="text-gray-800">
-    <header role="banner">
-      <nav aria-label="Navigation principale">
+    <header>
+      <nav>
         <a href="#" class="text-lg" style="color: var(--orange); font-weight: bold;">KetSiho</a>
         <div class="flex gap-3">
           <a href="#choisir" class="nav-item">
@@ -237,159 +179,56 @@
       </nav>
     </header>
     <main>
-      <!-- Section: Carrousel -->
-      <section class="carousel-wrapper" aria-label="Carrousel d'images">
-        <div class="carousel-track" id="carousel-track">
-          <div class="carousel-slide" style="background-image: url('https://placehold.co/800x400/f97316/fff?text=1');" role="img" aria-label="Image 1"></div>
-          <div class="carousel-slide" style="background-image: url('https://placehold.co/800x400/ea580c/fff?text=2');" role="img" aria-label="Image 2"></div>
-          <div class="carousel-slide" style="background-image: url('https://placehold.co/800x400/f59e0b/fff?text=3');" role="img" aria-label="Image 3"></div>
-        </div>
-        <div class="carousel-fade-right" aria-hidden="true"></div>
-      </section>
-      <div class="carousel-dots" id="carousel-dots">
-        <span class="dot active" data-index="0" aria-label="Aller à l'image 1"></span>
-        <span class="dot" data-index="1" aria-label="Aller à l'image 2"></span>
-        <span class="dot" data-index="2" aria-label="Aller à l'image 3"></span>
-      </div>
-      <!-- Section: Pourquoi nous choisir -->
-      <section id="choisir" class="max-w-6xl mx-auto px-4 py-16 fade-in">
-        <h2 class="text-3xl font-bold text-center text-orange-600 mb-10">Pourquoi nous choisir ?</h2>
-        <div class="grid md:grid-cols-2 gap-8">
-          <article class="flex items-center gap-4">
-            <i class="fas fa-shield-alt text-3xl text-orange-500"></i>
-            <div>
-              <h3 class="text-xl font-semibold">Fiabilité &amp; Sécurité</h3>
-              <p>Transport sécurisé et suivi rigoureux pour chaque envoi.</p>
-            </div>
-          </article>
-          <article class="flex items-center gap-4">
-            <i class="fas fa-shipping-fast text-3xl text-orange-500"></i>
-            <div>
-              <h3 class="text-xl font-semibold">Rapidité</h3>
-              <p>Des délais courts pour une livraison rapide et efficace.</p>
-            </div>
-          </article>
-          <article class="flex items-center gap-4">
-            <i class="fas fa-user-check text-3xl text-orange-500"></i>
-            <div>
-              <h3 class="text-xl font-semibold">Service personnalisé</h3>
-              <p>Nous adaptons nos solutions à chaque besoin spécifique.</p>
-            </div>
-          </article>
-          <article class="flex items-center gap-4">
-            <i class="fas fa-headset text-3xl text-orange-500"></i>
-            <div>
-              <h3 class="text-xl font-semibold">Support humain</h3>
-              <p>Une assistance client disponible et à votre écoute 7j/7.</p>
-            </div>
-          </article>
+      <!-- Section Livraison/Expédition -->
+      <section class="delivery-section fade-in">
+        <h3 class="section-title"><i class="fas fa-truck"></i>Expédition et livraison</h3>
+        <div class="delivery-info">
+          <p><i class="fas fa-info-circle info-icon"></i><strong>Résumé :</strong> Envoi vers la Côte d’Ivoire avec suivi, remise en main propre ou point relais.</p>
+          <p><i class="fas fa-rocket info-icon"></i><strong>Mission :</strong> Simplifier vos achats en Chine et garantir une expédition rapide, fiable et sécurisée jusqu’à votre porte en Côte d’Ivoire.</p>
+          <p><i class="fas fa-clock info-icon"></i><strong>Avantage "Rapidité" :</strong> Des délais maîtrisés, respectés et annoncés dès la commande.</p>
+          <p><i class="fas fa-map-marker-alt info-icon"></i><strong>Service complémentaire :</strong> Suivi de colis — En temps réel.</p>
         </div>
       </section>
-      <!-- Section: Informations importantes du Sud -->
-      <section class="info-box fade-in">
-        <h3 class="text-2xl font-bold mb-4">Informations importantes du Sud</h3>
-        <p>
-          Voici les informations essentielles concernant la région du Sud. 
-          Nous simplifions vos achats et garantissons une expédition rapide et fiable.
-        </p>
-        <p>
-          <strong>Numéro d'appel affiché :</strong> 05 65 97 82 00<br/>
-          <strong>Lien cliquable (tel):</strong> +2250799453981<br/>
-          <strong>WhatsApp direct (script):</strong> +2250565978200
-        </p>
-        <p>
-          <strong>Expédition et livraison :</strong> Envoi vers la Côte d’Ivoire avec suivi, remise en main propre ou point relais.
-        </p>
-        <p>
-          <strong>Mission :</strong> Simplifier vos achats en Chine et garantir une expédition rapide, fiable et sécurisée jusqu’à votre porte en Côte d’Ivoire.
-        </p>
-        <p>
-          <strong>Avantage "Rapidité" :</strong> Des délais maîtrisés, respectés et annoncés dès la commande.
-        </p>
-        <p>
-          <strong>Service complémentaire :</strong> Suivi de colis — En temps réel.
-        </p>
+      <!-- Section "Informations essentielles du Sud" avec numéro de téléphone -->
+      <section class="delivery-section fade-in">
+        <h3 class="section-title"><i class="fas fa-phone-alt"></i>Contact Client</h3>
+        <div class="delivery-info">
+          <p><i class="fas fa-phone info-icon"></i><strong>Appelez-nous :</strong> <span style="font-weight:bold;">05 65 97 82 00</span></p>
+          <p><i class="fas fa-link info-icon"></i><strong>Lien cliquable :</strong> <a href="tel:+2250799453981" style="color: var(--orange); text-decoration: underline;">+2250799453981</a></p>
+          <p><i class="fab fa-whatsapp info-icon"></i><strong>WhatsApp direct :</strong> <span style="font-weight:bold;">+2250565978200</span></p>
+        </div>
       </section>
-      <!-- Section: Contact (placée en bas) avec boutons WhatsApp et Email -->
+      <!-- Section Contact (boutons animés pour WhatsApp et Email) -->
       <section id="contact" class="fade-in">
-        <h3 class="text-2xl font-bold mb-4">Contactez-nous</h3>
-        <p>
-          Pour toute question, demande ou complément d'information, contactez-nous via WhatsApp ou par email.
+        <h3 class="section-title"><i class="fas fa-envelope-open-text"></i>Contactez-nous</h3>
+        <p class="contact-desc">
+          Pour toute question ou demande d'information complémentaire, n'hésitez pas à nous contacter via WhatsApp ou par Email.
         </p>
         <div class="contact-buttons">
           <a href="https://wa.me/2250565978200" target="_blank" class="contact-btn">
-            <i class="fab fa-whatsapp"></i>
-            WhatsApp
+            <i class="fab fa-whatsapp"></i>WhatsApp
           </a>
           <a href="mailto:contact@ketsiho.com" class="contact-btn">
-            <i class="fas fa-envelope"></i>
-            Email
+            <i class="fas fa-envelope"></i>Email
           </a>
         </div>
       </section>
     </main>
     <script>
-      const track = document.getElementById('carousel-track');
-      const slides = track.querySelectorAll('.carousel-slide');
-      const dots = document.querySelectorAll('.dot');
-      let currentIndex = 0;
-      
-      function getSlideWidth() {
-        return slides[0].getBoundingClientRect().width + 16;
-      }
-      
-      function updateDots(index) {
-        dots.forEach((dot, i) => {
-          dot.classList.toggle('active', i === index);
-        });
-      }
-      
-      function highlightSlide(index) {
-        slides.forEach((slide, i) => {
-          slide.classList.toggle('active', i === index);
-        });
-      }
-      
-      function goToSlide(index) {
-        currentIndex = index;
-        const slideWidth = getSlideWidth();
-        track.scrollTo({ left: index * slideWidth, behavior: 'smooth' });
-        updateDots(index);
-        highlightSlide(index);
-      }
-      
-      function autoScroll() {
-        currentIndex = (currentIndex + 1) % slides.length;
-        goToSlide(currentIndex);
-      }
-      
-      dots.forEach(dot => {
-        dot.addEventListener('click', () => {
-          const index = parseInt(dot.getAttribute('data-index'));
-          goToSlide(index);
-        });
-      });
-      
-      let interval = setInterval(autoScroll, 5000);
-      
-      track.addEventListener('touchstart', () => clearInterval(interval));
-      track.addEventListener('touchend', () => (interval = setInterval(autoScroll, 5000)));
-      
-      track.addEventListener('scroll', () => {
-        const slideWidth = getSlideWidth();
-        const scrollPos = track.scrollLeft;
-        const index = Math.round(scrollPos / slideWidth);
-        currentIndex = index;
-        updateDots(index);
-        highlightSlide(index);
-      });
-      
+      // Intersection Observer for fade-in animations
       const fadeEls = document.querySelectorAll('.fade-in');
       const observer = new IntersectionObserver(
-        (entries) => entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible')),
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
         { threshold: 0.1 }
       );
-      fadeEls.forEach(el => observer.observe(el));
+      fadeEls.forEach((el) => observer.observe(el));
     </script>
   </body>
 </html>
